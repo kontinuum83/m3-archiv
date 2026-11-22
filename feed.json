@@ -17,14 +17,14 @@
   },
   {
    "title": "Budapest Bár",
-   "url": "https://nemzetiarchivum.hu/m3/open?id=M3-bkp0ZXRXV0VTZWdTZjh4cE15SGlaR2ppRXBtVGlRcXo5M1FDVzUrYllpND0",
+   "url": "https://nemzetiarchivum.hu/m3/open?id=M3-NVZscXJLekYvQndVQnpzOXB0d1NZR01Yb0FJcXBMZU9ZSjdLNUc2U0ptbz0",
    "desc": "Műsorunkban válogatást mutatunk be a Budapest Bár zenekar közreműködésével, kitűnő vendégművészek társaságában.",
    "first_seen": "2026-11-22",
    "type": "műsor"
   },
   {
    "title": "Kulcskeresők",
-   "url": "https://nemzetiarchivum.hu/m3/open?id=M3-OG1ERExOUTNobWplZHBRV1pmVzkybGR2QjV2eVZoU0paNldrUDlONklDOD0",
+   "url": "https://nemzetiarchivum.hu/m3/open?id=M3-VGVFUlM0b0N6SHN1MlVRL0g4dHV5WUFYdmJ5aHRZSENsL1JoTFNxdWwwaz0",
    "desc": "Fóris pilóta a prágai gépet vezeti. Közben felesége beköltözik új lakásukba, azzal az elhatározással, hogy elválik a férjétől, s addigi életét nem vállalja. Nem találja azonban a…",
    "first_seen": "2026-11-22",
    "type": "műsor"
@@ -65,72 +65,9 @@
    "type": "sorozat"
   },
   {
-   "title": "A hét műtárgya – Hazatérő vadászok",
-   "url": "https://nemzetiarchivum.hu/m3/open?series=QSBow6l0IG3FsXTDoXJneWE=",
-   "desc": "Egy 17. századi kínai tekercskép, amelyen mongol vadászok térnek haza a zsákmánnyal.",
-   "first_seen": "2026-11-22",
-   "type": "sorozat"
-  },
-  {
-   "title": "Pestbeszéd – Garaczi László",
-   "url": "https://nemzetiarchivum.hu/m3/open?series=UGVzdGJlc3rDqWQ=",
-   "desc": "Garaczi László budapesti helyszíneken kalauzol: fürdők, Lipótváros, Városliget, Duna-part.",
-   "first_seen": "2026-11-22",
-   "type": "sorozat"
-  },
-  {
-   "title": "Budapest Bár",
-   "url": "https://nemzetiarchivum.hu/m3/open?id=M3-MlQxbkEraWRnajExQXJUeDlXRDh0ZU14Qm1qZFlzMEIraGpQU2gzUUkwST0",
-   "desc": "Zenei válogatás a Budapest Bár együttessel és vendégekkel.",
-   "first_seen": "2026-11-22",
-   "type": "műsor"
-  },
-  {
-   "title": "Kulcskeresők",
-   "url": "https://nemzetiarchivum.hu/m3/open?id=M3-L1JncXJDbUFJQ09kdU1HVTk2eFFCRG9Na21VNDRrSjNMVHE1R1o5emttcz0",
-   "desc": "Elveszik egy új lakás kulcsa, és a lakók – köztük a férj – bent ragadnak.",
-   "first_seen": "2026-11-22",
-   "type": "műsor"
-  },
-  {
    "title": "Rendezte Esztergályos Károly",
    "url": "https://nemzetiarchivum.hu/m3/open?series=UmVuZGV6dGU=",
    "desc": "1976-os beszélgetés: Vitray Tamás és Esztergályos Károly a tévés rendezésről.",
-   "first_seen": "2026-11-22",
-   "type": "sorozat"
-  },
-  {
-   "title": "Így, ahogy vagytok – III. rész",
-   "url": "https://nemzetiarchivum.hu/m3/open?series=w41neSwgYWhvZ3kgdmFneXRvaw==",
-   "desc": "Egy kelet-magyarországi kisváros polgármestere egy reptéri pályázat körüli nyomással küzd.",
-   "first_seen": "2026-11-22",
-   "type": "sorozat"
-  },
-  {
-   "title": "Família Kft. – 196. Zsuzsanna",
-   "url": "https://nemzetiarchivum.hu/m3/open?series=RmFtw61saWEgS2Z0Lg==",
-   "desc": "A Szép család férfitagjai viszik a háztartást, amíg a nők kirándulnak.",
-   "first_seen": "2026-11-22",
-   "type": "sorozat"
-  },
-  {
-   "title": "Família Kft. – 195. Az első születésnap",
-   "url": "https://nemzetiarchivum.hu/m3/open?series=RmFtw61saWEgS2Z0Lg==",
-   "desc": "A család a legkisebb, Benji első születésnapját ünnepli.",
-   "first_seen": "2026-11-22",
-   "type": "sorozat"
-  },
-  {
-   "title": "Élő népzene – XXIX. Országos Táncháztalálkozó, 1. rész",
-   "url": "https://nemzetiarchivum.hu/m3/open?series=w4lsxZEgbsOpcHplbmU=",
-   "desc": "Válogatás a 2010-es táncháztalálkozó népzenéjéből és táncaiból.",
-   "first_seen": "2026-11-22",
-   "type": "sorozat"
-  },
-  {
-   "title": "Magyar örökség – Márton Áron",
-   "url": "https://nemzetiarchivum.hu/m3/open?series=TWFneWFyIMO2csO2a3PDqWc=",
-   "desc": "Portré Márton Áron erdélyi püspökről.",
    "first_seen": "2026-11-22",
    "type": "sorozat"
   }
