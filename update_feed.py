@@ -22,9 +22,28 @@ def clean(text, limit=None):
     return text
 
 
+def key(title):
+    """A cím egyszerűsített alakja: kisbetű, írásjelek nélkül. Így a
+    "Família Kft. – 196." és a "Família Kft. 196." ugyanannak számít."""
+    return re.sub(r"[\W_]+", " ", title.lower()).strip()
+
+
+def dedupe(items):
+    """Ugyanaz a műsor csak egyszer maradjon meg (az első, vagyis a legújabb)."""
+    seen, out = set(), []
+    for i in items:
+        k = key(i["title"])
+        if k not in seen:
+            seen.add(k)
+            out.append(i)
+    return out
+
+
 def main():
     old = json.loads(FEED.read_text("utf-8")) if FEED.exists() else {"items": []}
-    known = {(i["url"], i["title"]) for i in old["items"]}
+    old_items = dedupe(old["items"])
+    by_key = {key(i["title"]): i for i in old_items}
+    changed = len(old_items) != len(old["items"])
 
     req = urllib.request.Request(RSS_URL, headers={"User-Agent": "Mozilla/5.0 (M3 archiv sajat app)"})
     root = ET.fromstring(urllib.request.urlopen(req, timeout=30).read())
@@ -34,23 +53,31 @@ def main():
     for it in root.iter("item"):
         title = clean(it.findtext("title"))
         url = (it.findtext("link") or "").strip()
-        if not title or not url or (url, title) in known:
+        if not title or not url:
             continue
-        new.append({
+        k = key(title)
+        if k in by_key:
+            # Már ismert műsor: csak a linkjét frissítjük (az ?id= linkek változnak).
+            if by_key[k]["url"] != url:
+                by_key[k]["url"] = url
+                changed = True
+            continue
+        item = {
             "title": title,
             "url": url,
             "desc": clean(it.findtext("description"), 180),
             "first_seen": today,
             "type": "sorozat" if "series=" in url else "műsor",
-        })
-        known.add((url, title))
+        }
+        new.append(item)
+        by_key[k] = item
 
-    if not new:
+    if not new and not changed:
         print("Nincs új műsor.")
         return
-    data = {"updated": today, "items": (new + old["items"])[:MAX_ITEMS]}
+    data = {"updated": today, "items": (new + old_items)[:MAX_ITEMS]}
     FEED.write_text(json.dumps(data, ensure_ascii=False, indent=1), "utf-8")
-    print(f"{len(new)} új műsor hozzáadva.")
+    print(f"{len(new)} új műsor hozzáadva, {len(old['items']) - len(old_items)} duplikátum törölve.")
 
 
 if __name__ == "__main__":
