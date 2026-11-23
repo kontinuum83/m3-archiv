@@ -1,421 +1,473 @@
 <!DOCTYPE html>
-<html lang="hu">
+<html lang="hu" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Képcső</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Képcső">
-<meta name="theme-color" content="#0A0A0C">
+<meta name="theme-color" content="#edf3fb" id="themeColor">
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="manifest" href="manifest.json">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-/* VOICE: esti tévézés, streaming-hangulat · IDEA: a régi tévé tesztábrája egy mai streamingappban
-   PICTURE: az élő adás nagy, lekerekített képernyője · COLOUR: éjfekete, korall kiemelés, tesztábra-csík
-   TYPE: Inter Tight címek + Inter szöveg · LAYOUT: egy oszlop, alsó menüsor, vízszintes kártyasorok */
+/* VOICE: rendezett, megbízható archívum-eszköz · IDEA: a NAVA RTV Downloader asztali program felülete telefonra
+   PICTURE: fejléc-kártya ikonnal, menüsáv aktív kék füllel, élő adás előnézeti doboz
+   COLOUR: világos #edf3fb + fehér kártyák / sötét #121923 + #1b2533; kék fő gomb, zöld lejátszás
+   TYPE: Segoe UI / rendszerbetű · LAYOUT: egymás alatti kártyák, ragadós menüsáv, táblázatos listák */
 :root{
-  --bg:#0A0A0C;--surface:#17171C;--surface2:#1F1F25;--line:#27272A;--ink:#F5F5F7;--muted:#A1A1AA;--dim:#8A8A93;--accent:#FF4D3D;
-  --bars:linear-gradient(90deg,#F5F5F7 0 14.28%,#F2C230 14.28% 28.57%,#2EC4C4 28.57% 42.86%,#3BC45A 42.86% 57.14%,#D946A8 57.14% 71.43%,#FF4D3D 71.43% 85.71%,#3B6EF5 85.71% 100%);
-  --head:'Inter Tight',Inter,system-ui,-apple-system,sans-serif;
+  --bg:#edf3fb;--card:#ffffff;--cardb:#d7e1ed;--hdrb:#d9e3f0;--ink:#17233d;--title:#12264a;--muted:#5f6f88;--sub:#63738e;
+  --btn:#f7f9fc;--btnb:#d2ddeb;--btnink:#203452;--btnhov:#eaf3ff;
+  --primary:#0878f9;--primaryh:#0066df;--go:#16a34a;--goh:#12833d;
+  --dangerbg:#fff1f2;--danger:#be123c;--dangerb:#fecdd3;
+  --navon:#e1efff;--navonink:#075fc7;--navline:#0878f9;
+  --input:#ffffff;--inputb:#cbd8e8;--focus:#1480ff;
+  --th:#f2f6fb;--think:#33445f;--alt:#f7faff;--grid:#e4ebf4;
+  --prev:#e8eff8;--prevb:#bdcde1;--prevink:#6b7a92;
+  --chip:#eef4fb;--chipink:#33445f;
+  --shadow:0 1px 2px #17233d0d;
+  color-scheme:light;
+}
+:root[data-theme=dark]{
+  --bg:#121923;--card:#1b2533;--cardb:#2d3a4d;--hdrb:#2d3a4d;--ink:#e3ebf6;--title:#eff6ff;--muted:#b5c4d8;--sub:#a2b3cb;
+  --btn:#243246;--btnb:#3b4b62;--btnink:#e4edf8;--btnhov:#2a405e;
+  --primary:#1479e8;--primaryh:#0867ce;--go:#128345;--goh:#0d6e37;
+  --dangerbg:#3b202b;--danger:#ffb8c5;--dangerb:#754050;
+  --navon:#233c5c;--navonink:#78b6ff;--navline:#2385f4;
+  --input:#141d29;--inputb:#3b4b62;--focus:#388cf0;
+  --th:#202d3e;--think:#c9d7e9;--alt:#1c293a;--grid:#2b394c;
+  --prev:#141d29;--prevb:#42536b;--prevink:#9aaec8;
+  --chip:#243246;--chipink:#c9d7e9;
+  --shadow:none;
   color-scheme:dark;
 }
 *{box-sizing:border-box;min-width:0;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Inter,system-ui,-apple-system,sans-serif;overflow-x:clip}
-body{padding:env(safe-area-inset-top) 0 calc(84px + env(safe-area-inset-bottom))}
-button,input{font:inherit;color:inherit}
-a{color:var(--accent)}
-:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.wrap{max-width:640px;margin:0 auto}
-header.top{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 10px}
-.brand{display:flex;align-items:baseline;gap:8px}
-.word{font:800 26px/1 var(--head);letter-spacing:-.5px;padding-bottom:7px;background:var(--bars) bottom/100% 4px no-repeat}
-.ver{font-size:11px;font-weight:600;color:var(--muted);border:1px solid #3F3F46;border-radius:6px;padding:2px 6px}
-.iconbtn{width:44px;height:44px;border-radius:22px;border:0;background:var(--surface);display:grid;place-items:center;cursor:pointer}
-h1.title{margin:0;font:800 30px/1.1 var(--head);letter-spacing:-.5px;padding-bottom:9px;background:var(--bars) bottom left/132px 4px no-repeat}
-h2{margin:0;font:700 19px/1.2 var(--head)}
-.sec{padding:22px 16px 0}
-.sechead{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.sechead a,.link{font-size:14px;font-weight:600;text-decoration:none;color:var(--accent);background:none;border:0;cursor:pointer;padding:10px 0}
-.view{display:none}.view.on{display:block}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 "Segoe UI",system-ui,-apple-system,Roboto,sans-serif;overflow-x:clip}
+body{padding:calc(10px + env(safe-area-inset-top)) 10px calc(18px + env(safe-area-inset-bottom))}
+button,input,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.app{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+svg{flex:none}
 
-/* lejátszó */
-.screen{position:relative;width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:radial-gradient(circle at 30% 35%,#F59E0B44 0,#0000 40%),radial-gradient(circle at 72% 30%,#FF4D3D33 0,#0000 38%),linear-gradient(180deg,#22160F,#0B0908)}
-a.screen{display:block;color:var(--ink);text-decoration:none}
-.play{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
-.play b{width:68px;height:68px;border-radius:34px;background:var(--accent);color:#0A0A0C;display:grid;place-items:center;box-shadow:0 8px 30px #FF4D3D55}
-.play span{font:700 15px/1.2 var(--head);text-shadow:0 1px 8px #000}
-a.screen:active .play b{transform:scale(.94)}
-.gcard{border-radius:16px;background:var(--surface);overflow:hidden;margin-top:16px}
-.gcard .gtop{height:120px;position:relative;background:radial-gradient(circle at 25% 40%,#F2C23033 0,#0000 45%),radial-gradient(circle at 80% 30%,#3B6EF533 0,#0000 45%),linear-gradient(180deg,#1A1A22,#121216);display:grid;place-items:center;color:var(--muted)}
-.gcard .gtop::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:var(--bars)}
-.gcard .gbody{padding:16px}
-.gcard h3{margin:0 0 6px;font:700 20px/1.2 var(--head)}
-.gcard p{margin:0 0 14px;color:#D4D4D8;font-size:15px}
-.tips{display:grid;gap:8px;margin-top:16px}
-.tip{display:flex;gap:12px;align-items:flex-start;padding:12px;border-radius:12px;background:var(--surface);font-size:14px;color:#D4D4D8}
-.tip b{flex:none;width:34px;height:34px;border-radius:17px;background:var(--surface2);display:grid;place-items:center;color:var(--ink);font:700 13px/1 var(--head)}
-.screen .bars{position:absolute;left:0;right:0;bottom:0;height:4px;background:var(--bars)}
-.badge{position:absolute;top:12px;left:12px;display:flex;align-items:center;gap:6px;background:var(--accent);color:#0A0A0C;font-weight:700;font-size:12px;padding:4px 8px;border-radius:6px;pointer-events:none;z-index:2}
-.badge i{width:7px;height:7px;border-radius:4px;background:#0A0A0C;animation:blink 1.6s infinite}
-@keyframes blink{50%{opacity:.25}}
-@media (prefers-reduced-motion:reduce){.badge i{animation:none}}
-.ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:20px;text-align:center}
-.ph p{margin:0;font-size:14px;color:#D4D4D8;max-width:30ch}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:22px;border:0;background:var(--accent);color:#0A0A0C;font-weight:700;font-size:15px;text-decoration:none;cursor:pointer}
-.btn.ghost{background:var(--surface);color:var(--ink)}
-.btn.sm{min-height:40px;padding:0 14px;font-size:14px}
-.now{display:flex;flex-direction:column;gap:3px;margin-top:14px}
-.now .k{font-size:13px;color:var(--accent);font-weight:600}
-.now h3{margin:0;font:700 24px/1.15 var(--head)}
-.now .s{font-size:14px;color:var(--muted)}
-.under{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+/* fejléc */
+.header{display:flex;align-items:center;gap:12px;padding:10px 12px;background:var(--card);border:1px solid var(--hdrb);border-radius:12px;box-shadow:var(--shadow)}
+.logo{width:46px;height:46px;border-radius:10px;border:1px solid var(--hdrb);background:#0A0A0C;flex:none;display:block}
+.tbox{flex:1;display:flex;flex-direction:column;gap:1px}
+.apptitle{margin:0;color:var(--title);font-size:22px;font-weight:700;line-height:1.15}
+.subtitle{color:var(--sub);font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hbtns{display:flex;gap:6px}
+.hbtn{width:40px;height:40px;border-radius:8px;border:1px solid var(--btnb);background:var(--btn);color:var(--btnink);display:grid;place-items:center;cursor:pointer}
+.hbtn:active{background:var(--btnhov)}
 
-/* kártyasorok */
-.row{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 16px 4px;margin:0 -16px;scrollbar-width:none}
-.row::-webkit-scrollbar{display:none}
-.poster{flex:none;width:122px;height:174px;border-radius:10px;position:relative;overflow:hidden;scroll-snap-align:start;border:0;padding:0;cursor:pointer;text-align:left;color:var(--ink)}
-.poster::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#0000 35%,#000000D9 100%)}
-.poster span{position:absolute;left:9px;right:9px;bottom:9px;z-index:1;font:700 13px/1.2 var(--head)}
-.poster em{position:absolute;top:8px;left:8px;z-index:1;font-style:normal;font-size:10.5px;font-weight:700;background:#0A0A0CCC;padding:2px 6px;border-radius:5px;color:#D4D4D8}
-.cats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.cat{position:relative;min-height:84px;border-radius:12px;padding:14px;display:flex;align-items:flex-end;text-decoration:none;color:var(--ink);font:700 15px/1.2 var(--head);overflow:hidden;background:var(--surface)}
-.cat::before{content:"";position:absolute;left:0;top:0;bottom:0;width:100%;opacity:.55}
-.cat span{position:relative}
-.cat i{position:absolute;top:12px;right:12px;width:28px;height:4px;border-radius:2px;background:var(--c)}
-.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
-.chips::-webkit-scrollbar{display:none}
-.chip{flex:none;min-height:40px;padding:0 14px;border-radius:20px;border:1px solid var(--line);background:var(--surface);font-size:14px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;text-decoration:none;color:var(--ink)}
-.chip.on{background:var(--accent);border-color:var(--accent);color:#0A0A0C}
+/* menüsáv */
+.navbar{position:sticky;top:calc(4px + env(safe-area-inset-top));z-index:10;display:flex;gap:4px;padding:5px;background:var(--card);border:1px solid var(--hdrb);border-radius:10px;overflow-x:auto;scrollbar-width:none;box-shadow:0 4px 14px #17233d14}
+.navbar::-webkit-scrollbar{display:none}
+.navbtn{flex:none;display:flex;align-items:center;gap:6px;min-height:42px;padding:0 12px;border:0;border-bottom:2px solid transparent;border-radius:7px;background:transparent;color:var(--ink);font-weight:600;font-size:14px;cursor:pointer}
+.navbtn.on{background:var(--navon);color:var(--navonink);border-bottom-color:var(--navline)}
+.status{margin:0 4px;color:var(--muted);font-size:13px}
 
-/* műsorújság */
-.note{font-size:13px;color:var(--muted);line-height:1.45;margin:10px 2px 0}
+/* kártyák */
+.card{background:var(--card);border:1px solid var(--cardb);border-radius:12px;padding:14px;box-shadow:var(--shadow)}
+.view{display:none;flex-direction:column;gap:10px}.view.on{display:flex}
+.chead{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.ctitle{margin:0;font-size:17px;font-weight:700;color:var(--ink);flex:1;display:flex;align-items:center;gap:8px}
+.ctitle .dot{color:var(--primary)}
+.muted{color:var(--muted);font-size:13px}
+.hint{color:var(--muted);font-size:13px;margin:10px 0 0}
 
-/* listák */
-.item{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px;border-radius:12px;background:var(--surface);margin-bottom:8px}
-.thumb{width:64px;height:44px;border-radius:8px}
-.item .t{font-weight:600;font-size:15px;line-height:1.25}
-.item .m{font-size:12.5px;color:var(--muted);margin-top:2px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.item .acts{display:flex;gap:6px}
-.item.wide{grid-template-columns:64px minmax(0,1fr)}
-.item.wide .acts{grid-column:2;margin-top:4px}
-.mini{width:44px;height:44px;border-radius:22px;border:0;background:var(--surface2);display:grid;place-items:center;cursor:pointer;color:var(--ink);text-decoration:none}
-.mini.hot{background:var(--accent);color:#0A0A0C}
-.mini.sure{width:auto;padding:0 12px;font-size:13px;font-weight:700;background:#3A1512;color:#FF8A80}
-.seen{opacity:.55}
-.search{position:relative;display:block;margin-top:14px}
-.search input{width:100%;min-height:50px;border-radius:14px;border:1px solid var(--line);background:var(--surface);padding:0 16px 0 46px;font-size:16px}
-.search svg{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}
-.empty{color:var(--muted);text-align:center;padding:28px 12px;font-size:15px}
-.tag{display:inline-block;font-size:11px;font-weight:700;color:var(--muted);background:var(--surface2);padding:2px 7px;border-radius:5px;margin-right:5px}
-textarea{width:100%;min-height:90px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:12px;font:13px/1.4 ui-monospace,monospace}
-.foot{font-size:12px;color:var(--dim);text-align:center;padding:26px 16px 10px;line-height:1.5}
+/* gombok */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 14px;border-radius:7px;border:1px solid var(--btnb);background:var(--btn);color:var(--btnink);font-weight:600;font-size:14.5px;text-decoration:none;cursor:pointer}
+.btn:active{background:var(--btnhov)}
+.btn.primary{background:var(--primary);border-color:var(--primary);color:#fff;font-weight:700}
+.btn.primary:active{background:var(--primaryh)}
+.btn.go{background:var(--go);border-color:var(--go);color:#fff;font-weight:700}
+.btn.go:active{background:var(--goh)}
+.btn.danger{background:var(--dangerbg);border-color:var(--dangerb);color:var(--danger)}
+.btn.block{width:100%}
+.btn.sm{min-height:38px;padding:0 10px;font-size:13.5px}
+.btn.icon{width:40px;min-height:40px;padding:0}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.btnrow .btn{flex:1 1 auto;white-space:nowrap}
 
-/* alsó menü */
-nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:20;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));padding:8px 4px calc(8px + env(safe-area-inset-bottom));background:var(--bars) top/100% 3px no-repeat,#0A0A0CF0;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
-nav.tabs button{display:flex;flex-direction:column;align-items:center;gap:3px;min-height:48px;border:0;background:none;color:var(--muted);font-size:11px;cursor:pointer;padding:4px 0}
-nav.tabs button.on{color:var(--accent);font-weight:600}
+/* élő előnézet */
+.preview{position:relative;aspect-ratio:16/9;border:1px dashed var(--prevb);border-radius:8px;background:var(--prev);color:var(--prevink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;padding:16px;text-decoration:none}
+.preview .big{width:62px;height:62px;border-radius:31px;background:var(--go);color:#fff;display:grid;place-items:center}
+.preview .ptxt{font-weight:700;color:var(--ink);font-size:16px}
+.live{position:absolute;top:10px;left:10px;display:flex;align-items:center;gap:6px;background:#e11d48;color:#fff;font-size:12px;font-weight:700;padding:3px 8px;border-radius:6px}
+.live i{width:7px;height:7px;border-radius:4px;background:#fff;animation:blink 1.6s infinite}
+@keyframes blink{50%{opacity:.3}}
+@media (prefers-reduced-motion:reduce){.live i{animation:none}}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:10px}
+.fact{border:1px solid var(--cardb);border-radius:8px;padding:8px 10px;background:var(--alt)}
+.fact b{display:block;font-size:18px;color:var(--ink)}
+.fact span{font-size:12.5px;color:var(--muted)}
 
-/* alsó lap */
-.sheet-bg{position:fixed;inset:0;background:#000000A6;z-index:30;opacity:0;pointer-events:none;transition:opacity .2s}
-.sheet{position:fixed;left:0;right:0;bottom:0;z-index:31;background:#141418;border-radius:20px 20px 0 0;padding:10px 18px calc(22px + env(safe-area-inset-bottom));transform:translateY(105%);transition:transform .25s ease;max-width:640px;margin:0 auto}
+/* kategóriák */
+.cats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.cat{justify-content:flex-start;text-align:left;min-height:46px;line-height:1.2}
+.cat i{width:10px;height:10px;border-radius:3px;background:var(--c);flex:none}
+
+/* táblázat */
+.table{border:1px solid var(--cardb);border-radius:8px;overflow:hidden}
+.thead{display:grid;grid-template-columns:34px minmax(0,1fr) auto;gap:8px;padding:8px 10px;background:var(--th);color:var(--think);font-weight:600;font-size:13px;border-bottom:1px solid var(--cardb)}
+.tr{display:grid;grid-template-columns:34px minmax(0,1fr) auto;gap:8px;align-items:center;padding:9px 10px;border-bottom:1px solid var(--grid)}
+.tr:last-child{border-bottom:0}
+.tr:nth-child(even){background:var(--alt)}
+.tr .n{color:var(--muted);font-size:13px;text-align:right;font-variant-numeric:tabular-nums}
+.tr .t{font-weight:600;line-height:1.25;background:none;border:0;padding:0;text-align:left;cursor:pointer;color:var(--ink)}
+.tr .meta{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.chip{font-size:11.5px;font-weight:600;color:var(--chipink);background:var(--chip);border-radius:5px;padding:1px 6px}
+.acts{display:flex;gap:6px}
+.seen .t{opacity:.55;text-decoration:line-through}
+.empty{padding:22px 12px;text-align:center;color:var(--muted)}
+
+/* űrlap */
+.field{display:block;position:relative}
+.field input{width:100%;min-height:46px;border:1px solid var(--inputb);border-radius:6px;background:var(--input);padding:0 12px 0 40px;font-size:16px;color:var(--ink)}
+.field input:focus{outline:0;border-color:var(--focus)}
+.field svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}
+.seg{display:flex;gap:4px;padding:4px;border:1px solid var(--cardb);border-radius:9px;background:var(--alt);margin-bottom:10px}
+.seg button{flex:1;min-height:38px;border:0;border-bottom:2px solid transparent;border-radius:6px;background:transparent;font-weight:600;font-size:13.5px;color:var(--ink);cursor:pointer}
+.seg button.on{background:var(--navon);color:var(--navonink);border-bottom-color:var(--navline)}
+textarea{width:100%;min-height:90px;margin-top:10px;border:1px solid var(--inputb);border-radius:7px;background:var(--input);padding:8px;font:12.5px/1.4 ui-monospace,Consolas,monospace;color:var(--ink)}
+
+/* alsó lap és üzenet */
+.sheet-bg{position:fixed;inset:0;background:#0b1220a0;z-index:30;opacity:0;pointer-events:none;transition:opacity .2s}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:31;max-width:720px;margin:0 auto;background:var(--card);border:1px solid var(--cardb);border-bottom:0;border-radius:16px 16px 0 0;padding:10px 16px calc(18px + env(safe-area-inset-bottom));transform:translateY(105%);transition:transform .25s ease;max-height:85vh;overflow:auto}
 .sheet.on{transform:none}.sheet-bg.on{opacity:1;pointer-events:auto}
 @media (prefers-reduced-motion:reduce){.sheet,.sheet-bg{transition:none}}
-.grab{width:40px;height:5px;border-radius:3px;background:#3F3F46;margin:0 auto 14px}
-.sheet .art{height:150px;border-radius:12px;margin-bottom:14px;position:relative;overflow:hidden}
-.sheet .art::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:var(--bars)}
-.sheet h3{margin:0 0 6px;font:700 22px/1.2 var(--head)}
-.sheet p{margin:0 0 16px;color:#D4D4D8;font-size:15px}
-.sheet .btns{display:flex;gap:10px;flex-wrap:wrap}
-.toast{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(10px);background:var(--ink);color:#0A0A0C;padding:10px 16px;border-radius:20px;font-weight:600;font-size:14px;opacity:0;transition:.25s;pointer-events:none;z-index:40;white-space:nowrap}
+.grab{width:40px;height:5px;border-radius:3px;background:var(--cardb);margin:0 auto 12px}
+.sheet h3{margin:0 0 6px;font-size:19px;color:var(--title)}
+.sheet p{margin:0 0 6px}
+.sheet ol{margin:6px 0 0;padding-left:20px}.sheet li{margin-bottom:6px}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(10px);background:var(--title);color:var(--card);padding:10px 16px;border-radius:8px;font-weight:600;font-size:14px;opacity:0;transition:.25s;pointer-events:none;z-index:40;white-space:nowrap}
 .toast.on{opacity:1;transform:translateX(-50%)}
+.foot{color:var(--muted);font-size:12px;text-align:center;padding:6px 10px 0}
 </style>
 </head>
 <body>
-<div class="wrap">
+<div class="app">
 
-  <!-- MOST -->
+  <header class="header">
+    <img class="logo" src="icon-180.png" alt="Képcső ikon">
+    <div class="tbox">
+      <h1 class="apptitle">Képcső</h1>
+      <span class="subtitle">M3 archívum | <span id="ver"></span></span>
+    </div>
+    <div class="hbtns">
+      <button class="hbtn" id="themeBtn" aria-label="Sötét mód"><svg id="themeIco" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg></button>
+      <button class="hbtn" data-info="help" aria-label="Súgó"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 015 0c0 1.7-2.5 2-2.5 4"/><path d="M12 17h.01"/></svg></button>
+      <button class="hbtn" data-info="about" aria-label="Névjegy"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6"/><path d="M12 7.5h.01"/></svg></button>
+    </div>
+  </header>
+
+  <nav class="navbar" aria-label="Fő menü">
+    <button class="navbtn on" data-go="most"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 3l4 4 4-4"/></svg>Élő adás</button>
+    <button class="navbtn" data-go="guide"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Műsorújság</button>
+    <button class="navbtn" data-go="explore"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Felfedezés</button>
+    <button class="navbtn" data-go="search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>Keresés</button>
+    <button class="navbtn" data-go="list"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg>Listám</button>
+  </nav>
+
+  <p class="status" id="status" role="status">Készen áll.</p>
+
+  <!-- ÉLŐ ADÁS -->
   <section class="view on" id="v-most">
-    <header class="top">
-      <div class="brand"><span class="word">Képcső</span><span class="ver" id="ver"></span></div>
-      <button class="iconbtn" aria-label="Keresés" data-go="search"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button>
-    </header>
-    <div style="padding:0 16px">
-      <a class="screen" id="liveScreen" href="https://nemzetiarchivum.hu/m3" target="_blank" rel="noopener" aria-label="M3 élő adás indítása az M3 hivatalos oldalán">
-        <div class="badge"><i></i>ÉLŐ</div>
-        <div class="play"><b><svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></b><span>Élő adás indítása</span></div>
-        <div class="bars"></div>
+    <div class="card">
+      <div class="chead"><h2 class="ctitle"><span class="dot">◉</span>Élő adás</h2><span class="muted">M3</span></div>
+      <a class="preview" href="https://nemzetiarchivum.hu/m3" target="_blank" rel="noopener" aria-label="Élő adás indítása az M3 hivatalos oldalán">
+        <span class="live"><i></i>ÉLŐ</span>
+        <span class="big"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+        <span class="ptxt">M3 – a régi tévé műsora, most</span>
+        <span>Az M3 hivatalos lejátszója nyílik meg</span>
       </a>
-      <div class="now">
-        <span class="k">Élő adás</span>
-        <h3>M3 – a régi tévé műsora, most</h3>
-        <span class="s">Koppints a képre: az M3 hivatalos lejátszója nyílik meg. Bezárás után itt folytatod.</span>
+      <div class="btnrow">
+        <a class="btn go" href="https://nemzetiarchivum.hu/m3" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>Élő adás indítása</a>
+        <button class="btn" data-go="guide">Műsorújság</button>
       </div>
-      <div class="under">
-        <button class="btn ghost sm" data-go="guide">Műsorújság</button>
+      <div class="facts">
+        <div class="fact"><b>2 óra</b><span>előre indítható minden műsor</span></div>
+        <div class="fact"><b>8 óra</b><span>még visszanézhető adás után</span></div>
       </div>
     </div>
-    <div class="sec">
-      <div class="sechead"><h2>Friss az archívumban</h2><button class="link" data-go="explore">Mind</button></div>
-      <div class="row" id="freshRow"></div>
+
+    <div class="card">
+      <div class="chead"><h2 class="ctitle">Friss az archívumban</h2><span class="muted" id="freshCount"></span></div>
+      <div class="table" id="freshTop"></div>
+      <div class="btnrow"><button class="btn" data-go="explore">Összes friss műsor</button></div>
     </div>
-    <div class="sec">
-      <div class="sechead"><h2>Kategóriák</h2></div>
-      <div class="chips" id="catChips"></div>
+
+    <div class="card" id="mineCard" hidden>
+      <div class="chead"><h2 class="ctitle">A listámról</h2><span class="muted" id="mineCount"></span></div>
+      <div class="table" id="mineTop"></div>
+      <div class="btnrow"><button class="btn" data-go="list">Listám megnyitása</button></div>
     </div>
-    <div class="sec" id="myRowSec" hidden>
-      <div class="sechead"><h2>A listámról</h2><button class="link" data-go="list">Mind</button></div>
-      <div class="row" id="myRow"></div>
-    </div>
-    <p class="foot">Nem hivatalos alkalmazás. A műsorokat és az élő adást a Nemzeti Archívum (MTVA) oldala játssza le; az app csak linkeket és a saját jegyzeteidet tárolja.</p>
   </section>
 
   <!-- MŰSORÚJSÁG -->
   <section class="view" id="v-guide">
-    <header class="top"><h1 class="title">Műsorújság</h1><span class="ver" data-ver></span></header>
-    <div style="padding:0 16px">
-      <div class="gcard">
-        <div class="gtop"><svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M7 14h4M7 17h7"/></svg></div>
-        <div class="gbody">
-          <h3>Az M3 mai műsora</h3>
-          <p>A teljes műsorújság az M3 hivatalos oldalán van, napokra lapozhatóan. Az élő adás is ott indul.</p>
-          <a class="btn" href="https://nemzetiarchivum.hu/m3" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>Műsorújság megnyitása</a>
-        </div>
-      </div>
-      <div class="tips">
-        <div class="tip"><b>2ó</b><span>Minden műsor már 2 órával az adás előtt elindítható.</span></div>
-        <div class="tip"><b>8ó</b><span>Adás után még 8 óráig visszanézhető.</span></div>
-        <div class="tip"><b><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg></b><span>Ami tetszik, azt a Felfedezésben vagy a Keresésben a Listádra teheted.</span></div>
-      </div>
+    <div class="card">
+      <div class="chead"><h2 class="ctitle">Műsorújság</h2><span class="muted">M3</span></div>
+      <a class="preview" href="https://nemzetiarchivum.hu/m3" target="_blank" rel="noopener" aria-label="Műsorújság megnyitása az M3 hivatalos oldalán">
+        <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M7 14h4M7 17h7"/></svg>
+        <span class="ptxt">Az M3 mai és következő napi műsora</span>
+        <span>A hivatalos oldalon, napokra lapozhatóan</span>
+      </a>
+      <div class="btnrow"><a class="btn primary" href="https://nemzetiarchivum.hu/m3" target="_blank" rel="noopener">Műsorújság megnyitása</a></div>
+      <p class="hint">A műsorújságot az app nem másolja le: mindig az M3 saját, naprakész oldala nyílik meg.</p>
     </div>
   </section>
 
   <!-- FELFEDEZÉS -->
   <section class="view" id="v-explore">
-    <header class="top"><h1 class="title">Felfedezés</h1><span class="ver" data-ver></span></header>
-    <div style="padding:0 16px">
-      <div class="cats" id="catGrid"></div>
+    <div class="card">
+      <div class="chead"><h2 class="ctitle">Kategóriák</h2><span class="muted">9 gyűjtemény</span></div>
+      <div class="cats" id="cats"></div>
     </div>
-    <div class="sec">
-      <div class="sechead"><h2>Legfrissebb feltöltések</h2></div>
-      <div id="freshList"></div>
-      <p class="note" id="feedInfo"></p>
+    <div class="card">
+      <div class="chead"><h2 class="ctitle">Legfrissebb feltöltések</h2><span class="muted" id="feedInfo"></span></div>
+      <div class="table" id="freshAll"></div>
+      <p class="hint">A lista 6 óránként magától frissül az M3 nyilvános hírcsatornájából. A legújabb van legfelül.</p>
     </div>
   </section>
 
   <!-- KERESÉS -->
   <section class="view" id="v-search">
-    <header class="top"><h1 class="title">Keresés</h1><span class="ver" data-ver></span></header>
-    <div style="padding:0 16px">
-      <label class="search"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    <div class="card">
+      <div class="chead"><h2 class="ctitle">Keresés</h2></div>
+      <label class="field"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
         <input id="q" type="search" placeholder="Sorozat vagy műsor címe" autocomplete="off" aria-label="Keresés"></label>
-      <p class="note">A friss feltöltések és a listád között keres. A pontosan beírt sorozatcímből közvetlen linket is készít.</p>
-      <div id="results" style="margin-top:14px"></div>
+      <p class="hint">A friss feltöltések és a listád között keres. A pontosan beírt sorozatcímből közvetlen linket is készít.</p>
+    </div>
+    <div class="card" id="resCard" hidden>
+      <div class="chead"><h2 class="ctitle">Találatok</h2><span class="muted" id="resCount"></span></div>
+      <div class="table" id="results"></div>
     </div>
   </section>
 
   <!-- LISTÁM -->
   <section class="view" id="v-list">
-    <header class="top"><h1 class="title">Listám</h1><span class="ver" data-ver></span></header>
-    <div style="padding:0 16px">
-      <div class="chips" id="listFilter" style="margin-bottom:14px">
-        <button class="chip on" data-f="all">Mind</button><button class="chip" data-f="todo">Még nem láttam</button><button class="chip" data-f="seen">Láttam</button>
+    <div class="card">
+      <div class="chead"><h2 class="ctitle">Listám</h2><span class="muted" id="listCount"></span></div>
+      <div class="seg" id="listFilter">
+        <button class="on" data-f="all">Mind</button><button data-f="todo">Még nem láttam</button><button data-f="seen">Láttam</button>
       </div>
-      <div id="listBox"></div>
-      <div class="sec" style="padding:20px 0 0">
-        <div class="sechead"><h2>Mentés</h2></div>
-        <p class="note" style="margin-top:0">A lista csak ezen a telefonon van. Másold ki időnként, és ha kell, illeszd vissza.</p>
-        <div class="under"><button class="btn ghost sm" id="expBtn">Lista másolása</button><button class="btn ghost sm" id="impBtn">Lista visszatöltése</button></div>
-        <textarea id="dump" hidden placeholder="Ide illeszd be a kimásolt listát, majd nyomd meg újra a Lista visszatöltése gombot."></textarea>
-      </div>
+      <div class="table" id="listBox"></div>
+    </div>
+    <div class="card">
+      <div class="chead"><h2 class="ctitle">Mentés</h2></div>
+      <p class="muted" style="margin:0">A lista csak ezen a telefonon van. Másold ki időnként, és ha kell, illeszd vissza.</p>
+      <div class="btnrow"><button class="btn" id="expBtn">Lista másolása</button><button class="btn" id="impBtn">Lista visszatöltése</button></div>
+      <textarea id="dump" hidden placeholder="Ide illeszd be a kimásolt listát, majd nyomd meg újra a Lista visszatöltése gombot."></textarea>
     </div>
   </section>
-</div>
 
-<nav class="tabs" aria-label="Fő menü">
-  <button data-go="most" class="on"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 3l4 4 4-4"/></svg>Most</button>
-  <button data-go="guide"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Műsorújság</button>
-  <button data-go="explore"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg>Felfedezés</button>
-  <button data-go="search"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>Keresés</button>
-  <button data-go="list"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg>Listám</button>
-</nav>
+  <p class="foot">Nem hivatalos alkalmazás. A műsorokat és az élő adást a Nemzeti Archívum (MTVA) oldala játssza le; az app csak linkeket és a saját jegyzeteidet tárolja.</p>
+</div>
 
 <div class="sheet-bg" id="sheetBg"></div>
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="shTitle">
   <div class="grab"></div>
-  <div class="art" id="shArt"></div>
   <h3 id="shTitle"></h3>
-  <p id="shDesc"></p>
-  <div class="btns" id="shBtns"></div>
+  <div id="shBody"></div>
+  <div class="btnrow" id="shBtns"></div>
 </div>
 <div class="toast" id="toast" role="status"></div>
 
 <script>
 {
-const VERSION = "v0.2";
+const VERSION = "v0.3";
 const BASE = "https://nemzetiarchivum.hu/m3/open";
 const CATS = [
-  {name:"UHD és HD restaurált filmek", url:BASE+"?collection=M3-VUhE", c:"#F2C230"},
-  {name:"Sorozatok", url:BASE+"?collection=M3-U29yb3phdG9r", c:"#2EC4C4"},
-  {name:"Tévéfilmek, tévéjátékok", url:BASE+"?collection=M3-VMOpdsOpZmlsbWVrIMOpcyBzb3JvemF0b2s", c:"#3BC45A"},
-  {name:"Családi és gyermekműsorok", url:BASE+"?collection=M3-Q3NhbMOhZGkgZmlsbWVr", c:"#D946A8"},
-  {name:"Kabaré, szórakoztató", url:BASE+"?collection=M3-S2FiYXLDqSwgdsOtZ2rDoXTDqWs", c:"#FF4D3D"},
-  {name:"Színház", url:BASE+"?collection=M3-U3rDrW5ow6F6", c:"#3B6EF5"},
-  {name:"Ismeretterjesztő", url:BASE+"?collection=M3-SXNtZXJldHRlcmplc3p0xZE", c:"#F5F5F7"},
-  {name:"1956-ra emlékezünk", url:BASE+"?collection=M3-MTk1Ni1yYSBlbWzDqWtlesO8bms", c:"#F2C230"},
-  {name:"Összes műsor", url:BASE, c:"#2EC4C4"}
+  {name:"UHD és HD restaurált filmek", url:BASE+"?collection=M3-VUhE", c:"#0878f9"},
+  {name:"Sorozatok", url:BASE+"?collection=M3-U29yb3phdG9r", c:"#16a34a"},
+  {name:"Tévéfilmek, tévéjátékok", url:BASE+"?collection=M3-VMOpdsOpZmlsbWVrIMOpcyBzb3JvemF0b2s", c:"#f59e0b"},
+  {name:"Családi és gyermekműsorok", url:BASE+"?collection=M3-Q3NhbMOhZGkgZmlsbWVr", c:"#db2777"},
+  {name:"Kabaré, szórakoztató", url:BASE+"?collection=M3-S2FiYXLDqSwgdsOtZ2rDoXTDqWs", c:"#e11d48"},
+  {name:"Színház", url:BASE+"?collection=M3-U3rDrW5ow6F6", c:"#7c3aed"},
+  {name:"Ismeretterjesztő", url:BASE+"?collection=M3-SXNtZXJldHRlcmplc3p0xZE", c:"#0891b2"},
+  {name:"1956-ra emlékezünk", url:BASE+"?collection=M3-MTk1Ni1yYSBlbWzDqWtlesO8bms", c:"#64748b"},
+  {name:"Összes műsor", url:BASE, c:"#17233d"}
 ];
 const SNAPSHOT = {"updated": "2026-11-22", "items": [{"title": "A hét műtárgya Hazatérő vadászok", "url": "https://nemzetiarchivum.hu/m3/open?series=QSBow6l0IG3FsXTDoXJneWE=", "desc": "Egy XVII. századi kínai képtekercs elemzését hallhatjuk, láthatjuk a műsorban. A zsákmánnyal hazatérő mongol vadászokat ábrázoló, 32 centiméter magas és 2,5 méter hosszú…", "first_seen": "2026-11-22", "type": "sorozat"}, {"title": "Pestbeszéd Garaczi László", "url": "https://nemzetiarchivum.hu/m3/open?series=UGVzdGJlc3rDqWQ=", "desc": "A Pestbeszéd a város és a benne élő ember különleges viszonyáról szól. Ismert és megismerendő művészek vallanak első szerelmekről, barátságokról, városi kalandokról, és mindarról,…", "first_seen": "2026-11-22", "type": "sorozat"}, {"title": "Budapest Bár", "url": "https://nemzetiarchivum.hu/m3/open?id=M3-NVZscXJLekYvQndVQnpzOXB0d1NZR01Yb0FJcXBMZU9ZSjdLNUc2U0ptbz0", "desc": "Műsorunkban válogatást mutatunk be a Budapest Bár zenekar közreműködésével, kitűnő vendégművészek társaságában.", "first_seen": "2026-11-22", "type": "műsor"}, {"title": "Kulcskeresők", "url": "https://nemzetiarchivum.hu/m3/open?id=M3-VGVFUlM0b0N6SHN1MlVRL0g4dHV5WUFYdmJ5aHRZSENsL1JoTFNxdWwwaz0", "desc": "Fóris pilóta a prágai gépet vezeti. Közben felesége beköltözik új lakásukba, azzal az elhatározással, hogy elválik a férjétől, s addigi életét nem vállalja. Nem találja azonban a…", "first_seen": "2026-11-22", "type": "műsor"}, {"title": "Így, ahogy vagytok III. rész", "url": "https://nemzetiarchivum.hu/m3/open?series=w41neSwgYWhvZ3kgdmFneXRvaw==", "desc": "Vidéki város, valahol Magyarország keleti végében. A polgármester, a katonai repülés többszörös világbajnoka az égből a földre pottyant. Mulatozós társai, a város kiskirályai…", "first_seen": "2026-11-22", "type": "sorozat"}, {"title": "Família Kft. 196. Zsuzsanna", "url": "https://nemzetiarchivum.hu/m3/open?series=RmFtw61saWEgS2Z0Lg==", "desc": "Szépéknél a férfiak magukhoz ragadják a hatalmat. Ám a hatalom kötelezettséggel is jár, ezért aztán a férfinép teendői is megszaporodnak. Amíg a nők emancipációs szabadságukat…", "first_seen": "2026-11-22", "type": "sorozat"}, {"title": "Família Kft. 195. Az első születésnap", "url": "https://nemzetiarchivum.hu/m3/open?series=RmFtw61saWEgS2Z0Lg==", "desc": "A kis Benji egyéves, a család a születésnapját ünnepli. Szépné izgatottan készül a nagy eseményre. Az ünnepi előkészület annyira lefoglalja, hogy nem veszi észre az ikrek közötti…", "first_seen": "2026-11-22", "type": "sorozat"}, {"title": "Magyar örökség Márton Áron", "url": "https://nemzetiarchivum.hu/m3/open?series=TWFneWFyIMO2csO2a3PDqWc=", "desc": "Tempfli József nagyváradi megyés püspök úgy jellemezte Márton Áront, mint akinek fő erényei voltak a jóság, a megértés és a mindenki felé való hajlás. Márton Áron katolikus pap,…", "first_seen": "2026-11-22", "type": "sorozat"}, {"title": "Élő népzene XXIX. Országos Táncháztalálkozó - 1. rész", "url": "https://nemzetiarchivum.hu/m3/open?series=w4lsxZEgbsOpcHplbmU=", "desc": "A táncháztalálkozók során az ország és a világ különböző részeiről érkező zene- és táncszeretettel mélyen átitatott közönség gyűlik össze, valamint természetesen táncosok,…", "first_seen": "2026-11-22", "type": "sorozat"}, {"title": "Rendezte Esztergályos Károly", "url": "https://nemzetiarchivum.hu/m3/open?series=UmVuZGV6dGU=", "desc": "1976-os beszélgetés: Vitray Tamás és Esztergályos Károly a tévés rendezésről.", "first_seen": "2026-11-22", "type": "sorozat"}]};
-const ART = [["#8A6A10","#17130A"],["#0E6E6E","#0A1414"],["#1F6B32","#0B160E"],["#7A1F5E","#170A12"],["#9A2A1F","#170B09"],["#1F3F9A","#0A0E1C"],["#5B5B66","#111114"],["#4C1D95","#100A1C"]];
 
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const norm = s => String(s||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");
-const hash = s => { let h=2166136261; for (const ch of String(s)) { h^=ch.charCodeAt(0); h=Math.imul(h,16777619); } return h>>>0; };
-const art = t => { const [a,b]=ART[hash(t)%ART.length]; return `linear-gradient(150deg,${a},${b})`; };
 const fmtDay = d => { try { return new Date(d+"T12:00:00").toLocaleDateString("hu-HU",{month:"long",day:"numeric"}); } catch(e) { return d||""; } };
 function load(k,d){ try{ const v=JSON.parse(localStorage.getItem(k)); return v ?? d; }catch(e){ return d; } }
 function save(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
 let toastT;
 function toast(m){ const t=$("#toast"); t.textContent=m; t.classList.add("on"); clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove("on"),1900); }
+function setStatus(m){ $("#status").textContent = m; }
 function seriesUrl(title){
   const b = btoa(String.fromCharCode(...new TextEncoder().encode(title.trim())));
   return BASE+"?series="+b.replace(/\+/g,"%2B").replace(/\//g,"%2F");
 }
 const uid = () => Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const playSvg = `<svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>`;
+const bm = `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg>`;
+const bmFull = `<svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg>`;
 
 let favs = load("kc_favs", []);
 let feed = SNAPSHOT || {updated:"",items:[]};
-document.querySelectorAll("[data-ver]").forEach(e=>e.textContent=VERSION);
 $("#ver").textContent = VERSION;
+
+/* --- téma --- */
+const moon = `<path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/>`;
+const sun = `<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>`;
+function applyTheme(t){
+  document.documentElement.dataset.theme = t;
+  $("#themeIco").innerHTML = t==="dark" ? sun : moon;
+  $("#themeBtn").setAttribute("aria-label", t==="dark" ? "Világos mód" : "Sötét mód");
+  $("#themeColor").setAttribute("content", t==="dark" ? "#121923" : "#edf3fb");
+}
+applyTheme(load("kc_theme", "light"));
+$("#themeBtn").onclick = () => { const t = document.documentElement.dataset.theme==="dark" ? "light" : "dark"; applyTheme(t); save("kc_theme", t); };
 
 /* --- nézetek --- */
 const VIEWS = ["most","guide","explore","search","list"];
+const STATUS = {
+  most: () => `Készen áll. ${feed.items.length} friss műsor az archívumban.`,
+  guide: () => "A műsorújság az M3 hivatalos oldalán nyílik meg.",
+  explore: () => `Kategóriák és ${feed.items.length} friss feltöltés.`,
+  search: () => "Írj be legalább 2 betűt a kereséshez.",
+  list: () => `${favs.length} műsor a listádon, ebből ${favs.filter(f=>f.seen).length} megnézve.`
+};
 function show(v){
   if (!VIEWS.includes(v)) v = "most";
   VIEWS.forEach(n => $("#v-"+n).classList.toggle("on", n===v));
-  document.querySelectorAll("nav.tabs button").forEach(b => b.classList.toggle("on", b.dataset.go===v));
+  document.querySelectorAll(".navbtn").forEach(b => { const on = b.dataset.go===v; b.classList.toggle("on", on); if (on) b.scrollIntoView({inline:"nearest",block:"nearest"}); });
+  if (v==="most") renderMost();
   if (v==="list") renderList();
   if (v==="explore") renderExplore();
+  if (v==="search") doSearch();
   if (v==="search") setTimeout(()=>$("#q").focus(), 50);
+  setStatus(STATUS[v]());
   window.scrollTo(0,0);
   if (location.hash.slice(1) !== v) history.replaceState(null, "", v==="most" ? location.pathname : "#"+v);
 }
 document.addEventListener("click", e => {
   const g = e.target.closest("[data-go]");
-  if (g) { e.preventDefault(); show(g.dataset.go); }
+  if (g && !g.closest(".sheet")) { e.preventDefault(); show(g.dataset.go); }
 });
 window.addEventListener("hashchange", () => show(location.hash.slice(1)));
 
-/* --- kártyák --- */
-function poster(x, i){
-  return `<button class="poster" style="background:${art(x.title)}" data-sheet="${i}" aria-label="${esc(x.title)}">
-    ${x.first_seen?`<em>${esc(fmtDay(x.first_seen))}</em>`:""}<span>${esc(x.title)}</span></button>`;
+/* --- táblázat --- */
+const inList = x => favs.some(f=>f.url===x.url && f.title===x.title);
+let pool = [];
+function rowsHtml(items, mode){
+  if (!items.length) return `<div class="empty">Nincs megjeleníthető műsor.</div>`;
+  const head = `<div class="thead"><span style="text-align:right">#</span><span>Cím</span><span>${mode==="fav"?"Műveletek":"Megnézem"}</span></div>`;
+  return head + items.map((x,i) => {
+    const k = pool.push(x)-1;
+    const meta = [x.type, x.first_seen && fmtDay(x.first_seen)].filter(Boolean).map(m=>`<span class="chip">${esc(m)}</span>`).join("");
+    const acts = mode==="fav"
+      ? `<button class="btn sm icon" data-seen="${x.id}" aria-label="${x.seen?"Mégsem láttam":"Láttam"}"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg></button>
+         <button class="btn sm icon danger" data-del="${x.id}" aria-label="Törlés"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg></button>`
+      : `<button class="btn sm icon" data-add="${k}" aria-label="Listához">${inList(x)?bmFull:bm}</button>`;
+    return `<div class="tr ${x.seen?"seen":""}"><span class="n">${i+1}.</span>
+      <div><button class="t" data-sheet="${k}">${esc(x.title)}</button>${meta?`<div class="meta">${meta}</div>`:""}</div>
+      <div class="acts">${acts}<a class="btn sm icon go" href="${esc(x.url)}" target="_blank" rel="noopener" aria-label="Megnyitás">${playSvg}</a></div></div>`;
+  }).join("");
 }
 function sortedFeed(){
   return feed.items.map((x,i)=>({...x,_i:i})).sort((a,b)=>(b.first_seen||"").localeCompare(a.first_seen||"") || a._i-b._i);
 }
-let sheetPool = [];
 function renderMost(){
-  const items = sortedFeed().slice(0,12);
-  sheetPool = items;
-  $("#freshRow").innerHTML = items.length ? items.map((x,i)=>poster(x,i)).join("") : `<div class="empty">Még nincs friss feltöltés.</div>`;
-  $("#catChips").innerHTML = CATS.map(c=>`<a class="chip" href="${c.url}" target="_blank" rel="noopener">${esc(c.name)}</a>`).join("");
-  const mine = favs.filter(f=>!f.seen && f.url).slice(0,10);
-  $("#myRowSec").hidden = !mine.length;
-  $("#myRow").innerHTML = mine.map((x,i)=>poster(x,"f"+i)).join("");
-}
-function itemRow(x, src){
-  const inList = favs.some(f=>f.url===x.url && f.title===x.title);
-  return `<div class="item">
-    <div class="thumb" style="background:${art(x.title)}"></div>
-    <div><div class="t">${esc(x.title)}</div>
-      <div class="m">${x.type?`<span class="tag">${esc(x.type)}</span>`:""}${x.first_seen?`<span class="tag">${esc(fmtDay(x.first_seen))}</span>`:""}${esc(x.desc||"")}</div></div>
-    <div class="acts">
-      ${src!=="fav"?`<button class="mini" aria-label="Listához" data-add="${esc(x.url)}" data-t="${esc(x.title)}" data-d="${esc(x.desc||"")}">${inList?bmFull:bm}</button>`:""}
-      <a class="mini hot" href="${esc(x.url)}" target="_blank" rel="noopener" aria-label="Megnyitás"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></a>
-    </div></div>`;
-}
-const bm = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg>`;
-const bmFull = `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg>`;
-function renderExplore(){
-  $("#catGrid").innerHTML = CATS.map(c=>`<a class="cat" style="--c:${c.c}" href="${c.url}" target="_blank" rel="noopener"><i></i><span>${esc(c.name)}</span></a>`).join("");
+  pool = [];
   const items = sortedFeed();
-  $("#freshList").innerHTML = items.length ? items.map(x=>itemRow(x,"feed")).join("") : `<div class="empty">Még nincs friss feltöltés.</div>`;
-  $("#feedInfo").textContent = feed.updated ? `${items.length} műsor · frissítve: ${fmtDay(feed.updated)}` : "";
+  $("#freshTop").innerHTML = rowsHtml(items.slice(0,5), "feed");
+  $("#freshCount").textContent = `${items.length} műsor`;
+  const mine = favs.filter(f=>!f.seen && f.url);
+  $("#mineCard").hidden = !mine.length;
+  $("#mineTop").innerHTML = rowsHtml(mine.slice(0,5), "feed");
+  $("#mineCount").textContent = `${mine.length} megnézendő`;
+}
+function renderExplore(){
+  $("#cats").innerHTML = CATS.map(c=>`<a class="btn cat" style="--c:${c.c}" href="${c.url}" target="_blank" rel="noopener"><i></i>${esc(c.name)}</a>`).join("");
+  const items = sortedFeed();
+  $("#freshAll").innerHTML = rowsHtml(items, "feed");
+  $("#feedInfo").textContent = feed.updated ? `${items.length} műsor · ${fmtDay(feed.updated)}` : `${items.length} műsor`;
 }
 
 /* --- alsó lap --- */
-function openSheet(x){
-  $("#shArt").style.background = art(x.title);
-  $("#shTitle").textContent = x.title;
-  $("#shDesc").textContent = x.desc || x.note || "";
-  const inList = favs.some(f=>f.url===x.url && f.title===x.title);
-  $("#shBtns").innerHTML = `<a class="btn" href="${esc(x.url)}" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>Megnézem</a>
-    ${inList?`<button class="btn ghost" disabled>A listádon van</button>`:`<button class="btn ghost" data-add="${esc(x.url)}" data-t="${esc(x.title)}" data-d="${esc(x.desc||"")}">${bm}Listához</button>`}`;
+function openSheet(title, bodyHtml, btnsHtml){
+  $("#shTitle").textContent = title; $("#shBody").innerHTML = bodyHtml; $("#shBtns").innerHTML = btnsHtml || "";
   $("#sheet").classList.add("on"); $("#sheetBg").classList.add("on");
 }
 function closeSheet(){ $("#sheet").classList.remove("on"); $("#sheetBg").classList.remove("on"); }
 $("#sheetBg").onclick = closeSheet;
 let touchY=null;
 $("#sheet").addEventListener("touchstart", e=>{ touchY=e.touches[0].clientY; }, {passive:true});
-$("#sheet").addEventListener("touchend", e=>{ if (touchY!==null && e.changedTouches[0].clientY-touchY>60) closeSheet(); touchY=null; });
+$("#sheet").addEventListener("touchend", e=>{ if (touchY!==null && e.changedTouches[0].clientY-touchY>60 && $("#sheet").scrollTop<=0) closeSheet(); touchY=null; });
 document.addEventListener("keydown", e=>{ if (e.key==="Escape") closeSheet(); });
+const INFO = {
+  help: ["Súgó", `<ol>
+    <li><b>Élő adás:</b> a zöld gombbal az M3 hivatalos lejátszója nyílik meg. Bezárás után itt folytatod.</li>
+    <li><b>Műsorújság:</b> az M3 hivatalos, napokra lapozható műsorújságát nyitja meg.</li>
+    <li><b>Felfedezés:</b> kategóriák és a legfrissebb feltöltések, 6 óránként frissül.</li>
+    <li><b>Keresés:</b> a friss műsorok és a listád között keres; a pontos sorozatcímből közvetlen linket készít.</li>
+    <li><b>Listám:</b> a könyvjelző gombbal teszel fel műsort; a pipával jelölöd, ha megnézted.</li></ol>`],
+  about: ["Névjegy", `<p><b>Képcső ${VERSION}</b> – nem hivatalos, saját használatra készült app az M3 tévéarchívumhoz.</p>
+    <p class="muted">Csak nyilvános forrásokat használ: az M3 RSS-hírcsatornáját és a nyilvános oldalak linkjeit. A műsorokat a Nemzeti Archívum (MTVA) oldala játssza le. A listád csak ezen a telefonon tárolódik.</p>`]
+};
 document.addEventListener("click", e=>{
-  const p = e.target.closest("[data-sheet]");
-  if (p) { const k=p.dataset.sheet; const mine=favs.filter(f=>!f.seen&&f.url); openSheet(k[0]==="f" ? mine[+k.slice(1)] : sheetPool[+k]); return; }
+  const inf = e.target.closest("[data-info]");
+  if (inf) { const [t,b]=INFO[inf.dataset.info]; openSheet(t, b, `<button class="btn primary block" id="shClose">Bezárás</button>`); return; }
+  if (e.target.closest("#shClose")) { closeSheet(); return; }
+  const s = e.target.closest("[data-sheet]");
+  if (s) { const x = pool[+s.dataset.sheet]; if (!x) return;
+    openSheet(x.title, `<p>${esc(x.desc||x.note||"")}</p>${x.first_seen?`<p class="muted">Felkerült: ${esc(fmtDay(x.first_seen))}</p>`:""}`,
+      `<a class="btn go" href="${esc(x.url)}" target="_blank" rel="noopener">${playSvg}Megnézem</a>` +
+      (x.id ? "" : (inList(x) ? `<button class="btn" disabled>A listádon van</button>` : `<button class="btn" data-add="${s.dataset.sheet}">${bm}Listához</button>`)));
+    return; }
   const a = e.target.closest("[data-add]");
-  if (a) {
-    if (favs.some(f=>f.url===a.dataset.add && f.title===a.dataset.t)) { toast("Már a listádon van"); return; }
-    favs.unshift({id:uid(), title:a.dataset.t, url:a.dataset.add, desc:a.dataset.d, seen:false, added:Date.now()});
+  if (a) { const x = pool[+a.dataset.add]; if (!x) return;
+    if (inList(x)) { toast("Már a listádon van"); return; }
+    favs.unshift({id:uid(), title:x.title, url:x.url, desc:x.desc||"", seen:false, added:Date.now()});
     save("kc_favs", favs); toast("Hozzáadva a listádhoz");
-    if (a.closest("#sheet")) { a.outerHTML = `<button class="btn ghost" disabled>A listádon van</button>`; }
+    if (a.closest("#sheet")) a.outerHTML = `<button class="btn" disabled>A listádon van</button>`;
     else a.innerHTML = bmFull;
-    renderMost();
+    const cur = VIEWS.find(n=>$("#v-"+n).classList.contains("on"));
+    if (!a.closest("#sheet")) ({most:renderMost, explore:renderExplore, search:doSearch})[cur]?.();
   }
 });
 
 /* --- keresés --- */
 function doSearch(){
   const raw = $("#q").value.trim(), q = norm(raw);
-  if (q.length < 2) { $("#results").innerHTML = ""; return; }
-  const a = feed.items.filter(x=>norm(x.title+" "+(x.desc||"")).includes(q)).slice(0,20);
-  const b = favs.filter(x=>x.url && norm(x.title+" "+(x.desc||"")).includes(q)).slice(0,20);
+  if (q.length < 2) { $("#resCard").hidden = true; setStatus(STATUS.search()); return; }
+  const a = feed.items.filter(x=>norm(x.title+" "+(x.desc||"")).includes(q));
+  const b = favs.filter(x=>x.url && norm(x.title+" "+(x.desc||"")).includes(q) && !a.some(y=>y.url===x.url && y.title===x.title));
   const direct = {title:raw, url:seriesUrl(raw), desc:"Közvetlen sorozatlink a beírt címből. Csak pontos címmel működik: a kis- és nagybetű és az ékezet is számít.", type:"sorozatlink"};
-  $("#results").innerHTML =
-    (a.length ? `<h2 style="margin:0 0 10px">Friss feltöltések</h2>`+a.map(x=>itemRow(x,"feed")).join("") : "") +
-    (b.length ? `<h2 style="margin:16px 0 10px">A listádon</h2>`+b.map(x=>itemRow(x,"fav")).join("") : "") +
-    (!a.length && !b.length ? `<p class="note" style="margin-bottom:12px">Nincs találat a friss feltöltések és a listád között.</p>` : "") +
-    `<h2 style="margin:16px 0 10px">Közvetlen link</h2>` + itemRow(direct,"direct");
+  pool = [];
+  $("#results").innerHTML = rowsHtml([...a, ...b.map(x=>({...x, type:"listám", id:undefined})), direct], "feed");
+  $("#resCount").textContent = `${a.length+b.length} találat + közvetlen link`;
+  $("#resCard").hidden = false;
+  setStatus(`${a.length+b.length} találat erre: „${raw}”`);
 }
 $("#q").addEventListener("input", doSearch);
 
 /* --- listám --- */
 let filter = "all";
 $("#listFilter").onclick = e => { const b=e.target.closest("[data-f]"); if(!b) return; filter=b.dataset.f;
-  document.querySelectorAll("#listFilter .chip").forEach(c=>c.classList.toggle("on", c===b)); renderList(); };
+  document.querySelectorAll("#listFilter button").forEach(c=>c.classList.toggle("on", c===b)); renderList(); };
 function renderList(){
+  pool = [];
   const list = favs.filter(x => filter==="all" || (filter==="seen") === !!x.seen);
-  $("#listBox").innerHTML = list.length ? list.map(x=>`<div class="item wide ${x.seen?"seen":""}">
-      <div class="thumb" style="background:${art(x.title)}"></div>
-      <div><div class="t">${esc(x.title)}</div><div class="m">${esc(x.desc||"")}</div></div>
-      <div class="acts">
-        <button class="mini" data-seen="${x.id}" aria-label="${x.seen?"Mégsem láttam":"Láttam"}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg></button>
-        <button class="mini" data-del="${x.id}" aria-label="Törlés"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg></button>
-        <a class="mini hot" href="${esc(x.url)}" target="_blank" rel="noopener" aria-label="Megnyitás"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></a>
-      </div></div>`).join("")
+  $("#listBox").innerHTML = list.length ? rowsHtml(list, "fav")
     : `<div class="empty">${favs.length ? "Ebben a szűrésben nincs semmi." : "Még üres a listád.<br>A Felfedezésben vagy a Keresésben a könyvjelző gombbal adhatsz hozzá műsort."}</div>`;
+  $("#listCount").textContent = `${favs.length} műsor`;
 }
 $("#listBox").onclick = e => {
   const s = e.target.closest("[data-seen]");
-  if (s) { const x=favs.find(f=>f.id===s.dataset.seen); x.seen=!x.seen; save("kc_favs",favs); renderList(); renderMost(); return; }
+  if (s) { const x=favs.find(f=>f.id===s.dataset.seen); x.seen=!x.seen; save("kc_favs",favs); renderList(); setStatus(STATUS.list()); return; }
   const d = e.target.closest("[data-del]");
   if (d) {
-    if (!d.classList.contains("sure")) { d.classList.add("sure"); d.textContent="Törlöd?"; setTimeout(()=>{ if(d.isConnected) renderList(); }, 3000); return; }
-    favs = favs.filter(f=>f.id!==d.dataset.del); save("kc_favs",favs); renderList(); renderMost(); toast("Törölve");
+    if (!d.dataset.sure) { d.dataset.sure="1"; d.classList.remove("icon"); d.textContent="Törlöd?"; setTimeout(()=>{ if(d.isConnected) renderList(); }, 3000); return; }
+    favs = favs.filter(f=>f.id!==d.dataset.del); save("kc_favs",favs); renderList(); setStatus(STATUS.list()); toast("Törölve");
   }
 };
 $("#expBtn").onclick = () => {
@@ -430,16 +482,19 @@ $("#impBtn").onclick = () => {
   try {
     const d = JSON.parse(t.value); const list = Array.isArray(d) ? d : d.favs; if (!Array.isArray(list)) throw 0;
     let n=0; list.forEach(x=>{ if (x && x.title && x.url && !favs.some(f=>f.url===x.url && f.title===x.title)) { favs.push({seen:false,...x,id:x.id||uid()}); n++; } });
-    save("kc_favs",favs); renderList(); renderMost(); toast(`${n} műsor visszatöltve`);
+    save("kc_favs",favs); renderList(); setStatus(STATUS.list()); toast(`${n} műsor visszatöltve`);
   } catch(e) { toast("Ez nem egy kimásolt lista"); }
 };
 
 /* --- indulás --- */
-renderMost();
-fetch("feed.json",{cache:"no-store"}).then(r=>r.ok?r.json():Promise.reject()).then(d=>{
-  if (d && Array.isArray(d.items)) { feed=d; renderMost(); if ($("#v-explore").classList.contains("on")) renderExplore(); doSearch(); }
-}).catch(()=>{});
 show(location.hash.slice(1) || "most");
+fetch("feed.json",{cache:"no-store"}).then(r=>r.ok?r.json():Promise.reject()).then(d=>{
+  if (d && Array.isArray(d.items)) {
+    feed=d; const cur = VIEWS.find(n=>$("#v-"+n).classList.contains("on"));
+    renderMost(); if (cur==="explore") renderExplore(); if (cur==="search") doSearch(); if (cur==="list") renderList();
+    if (cur!=="search") setStatus(STATUS[cur]());
+  }
+}).catch(()=>{});
 if ("serviceWorker" in navigator && location.protocol==="https:" && /github\.io$/.test(location.hostname)) navigator.serviceWorker.register("sw.js").catch(()=>{});
 }
 </script>
