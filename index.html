@@ -44,7 +44,20 @@ h2{margin:0;font:700 19px/1.2 var(--head)}
 
 /* lejátszó */
 .screen{position:relative;width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:radial-gradient(circle at 30% 35%,#F59E0B44 0,#0000 40%),radial-gradient(circle at 72% 30%,#FF4D3D33 0,#0000 38%),linear-gradient(180deg,#22160F,#0B0908)}
-.screen iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+a.screen{display:block;color:var(--ink);text-decoration:none}
+.play{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+.play b{width:68px;height:68px;border-radius:34px;background:var(--accent);color:#0A0A0C;display:grid;place-items:center;box-shadow:0 8px 30px #FF4D3D55}
+.play span{font:700 15px/1.2 var(--head);text-shadow:0 1px 8px #000}
+a.screen:active .play b{transform:scale(.94)}
+.gcard{border-radius:16px;background:var(--surface);overflow:hidden;margin-top:16px}
+.gcard .gtop{height:120px;position:relative;background:radial-gradient(circle at 25% 40%,#F2C23033 0,#0000 45%),radial-gradient(circle at 80% 30%,#3B6EF533 0,#0000 45%),linear-gradient(180deg,#1A1A22,#121216);display:grid;place-items:center;color:var(--muted)}
+.gcard .gtop::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:var(--bars)}
+.gcard .gbody{padding:16px}
+.gcard h3{margin:0 0 6px;font:700 20px/1.2 var(--head)}
+.gcard p{margin:0 0 14px;color:#D4D4D8;font-size:15px}
+.tips{display:grid;gap:8px;margin-top:16px}
+.tip{display:flex;gap:12px;align-items:flex-start;padding:12px;border-radius:12px;background:var(--surface);font-size:14px;color:#D4D4D8}
+.tip b{flex:none;width:34px;height:34px;border-radius:17px;background:var(--surface2);display:grid;place-items:center;color:var(--ink);font:700 13px/1 var(--head)}
 .screen .bars{position:absolute;left:0;right:0;bottom:0;height:4px;background:var(--bars)}
 .badge{position:absolute;top:12px;left:12px;display:flex;align-items:center;gap:6px;background:var(--accent);color:#0A0A0C;font-weight:700;font-size:12px;padding:4px 8px;border-radius:6px;pointer-events:none;z-index:2}
 .badge i{width:7px;height:7px;border-radius:4px;background:#0A0A0C;animation:blink 1.6s infinite}
@@ -79,8 +92,6 @@ h2{margin:0;font:700 19px/1.2 var(--head)}
 .chip.on{background:var(--accent);border-color:var(--accent);color:#0A0A0C}
 
 /* műsorújság */
-.guide{margin-top:14px;border-radius:14px;overflow:hidden;background:var(--surface);border:1px solid var(--line);height:calc(100dvh - 300px);min-height:420px;position:relative}
-.guide iframe{width:100%;height:100%;border:0;background:#fff}
 .note{font-size:13px;color:var(--muted);line-height:1.45;margin:10px 2px 0}
 
 /* listák */
@@ -133,18 +144,18 @@ nav.tabs button.on{color:var(--accent);font-weight:600}
       <button class="iconbtn" aria-label="Keresés" data-go="search"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button>
     </header>
     <div style="padding:0 16px">
-      <div class="screen" id="liveScreen">
+      <a class="screen" id="liveScreen" href="https://nemzetiarchivum.hu/m3" target="_blank" rel="noopener" aria-label="M3 élő adás indítása az M3 hivatalos oldalán">
         <div class="badge"><i></i>ÉLŐ</div>
+        <div class="play"><b><svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></b><span>Élő adás indítása</span></div>
         <div class="bars"></div>
-      </div>
+      </a>
       <div class="now">
         <span class="k">Élő adás</span>
         <h3>M3 – a régi tévé műsora, most</h3>
-        <span class="s">Minden műsor 2 órával előre indítható, és 8 óráig visszanézhető.</span>
+        <span class="s">Koppints a képre: az M3 hivatalos lejátszója nyílik meg. Bezárás után itt folytatod.</span>
       </div>
       <div class="under">
         <button class="btn ghost sm" data-go="guide">Műsorújság</button>
-        <a class="btn ghost sm" href="https://nemzetiarchivum.hu/m3" target="_blank" rel="noopener">Megnyitás az M3 oldalán</a>
       </div>
     </div>
     <div class="sec">
@@ -166,9 +177,19 @@ nav.tabs button.on{color:var(--accent);font-weight:600}
   <section class="view" id="v-guide">
     <header class="top"><h1 class="title">Műsorújság</h1><span class="ver" data-ver></span></header>
     <div style="padding:0 16px">
-      <div class="guide" id="guideBox"></div>
-      <p class="note">Ez az M3 hivatalos műsorújsága, beágyazva. A saját, idővonalas műsorújság emlékeztetővel a v0.2-ben jön.</p>
-      <div class="under"><a class="btn ghost sm" href="https://nemzetiarchivum.hu/m3" target="_blank" rel="noopener">Megnyitás az M3 oldalán</a></div>
+      <div class="gcard">
+        <div class="gtop"><svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M7 14h4M7 17h7"/></svg></div>
+        <div class="gbody">
+          <h3>Az M3 mai műsora</h3>
+          <p>A teljes műsorújság az M3 hivatalos oldalán van, napokra lapozhatóan. Az élő adás is ott indul.</p>
+          <a class="btn" href="https://nemzetiarchivum.hu/m3" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>Műsorújság megnyitása</a>
+        </div>
+      </div>
+      <div class="tips">
+        <div class="tip"><b>2ó</b><span>Minden műsor már 2 órával az adás előtt elindítható.</span></div>
+        <div class="tip"><b>8ó</b><span>Adás után még 8 óráig visszanézhető.</span></div>
+        <div class="tip"><b><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg></b><span>Ami tetszik, azt a Felfedezésben vagy a Keresésben a Listádra teheted.</span></div>
+      </div>
     </div>
   </section>
 
@@ -234,12 +255,8 @@ nav.tabs button.on{color:var(--accent);font-weight:600}
 
 <script>
 {
-const VERSION = "v0.1";
+const VERSION = "v0.2";
 const BASE = "https://nemzetiarchivum.hu/m3/open";
-const LIVE_EMBED = "https://nemzetiarchivum.hu/m3/embed";
-const GUIDE_EMBED = "https://nemzetiarchivum.hu/m3/embed-program-guide";
-// Beágyazott lejátszót csak valódi weboldalon (GitHub Pages) próbálunk; a chat előnézete tiltja.
-const CAN_EMBED = /github\.io$|^localhost$|^127\./.test(location.hostname);
 const CATS = [
   {name:"UHD és HD restaurált filmek", url:BASE+"?collection=M3-VUhE", c:"#F2C230"},
   {name:"Sorozatok", url:BASE+"?collection=M3-U29yb3phdG9r", c:"#2EC4C4"},
@@ -251,7 +268,7 @@ const CATS = [
   {name:"1956-ra emlékezünk", url:BASE+"?collection=M3-MTk1Ni1yYSBlbWzDqWtlesO8bms", c:"#F2C230"},
   {name:"Összes műsor", url:BASE, c:"#2EC4C4"}
 ];
-const SNAPSHOT = {"updated": "2026-11-22", "items": [{"title": "A hét műtárgya – Hazatérő vadászok", "url": "https://nemzetiarchivum.hu/m3/open?series=QSBow6l0IG3FsXTDoXJneWE=", "desc": "Egy 17. századi kínai tekercskép, amelyen mongol vadászok térnek haza a zsákmánnyal.", "first_seen": "2026-11-22", "type": "sorozat"}, {"title": "Pestbeszéd – Garaczi László", "url": "https://nemzetiarchivum.hu/m3/open?series=UGVzdGJlc3rDqWQ=", "desc": "Garaczi László budapesti helyszíneken kalauzol: fürdők, Lipótváros, Városliget, Duna-part.", "first_seen": "2026-11-22", "type": "sorozat"}, {"title": "Budapest Bár", "url": "https://nemzetiarchivum.hu/m3/open?id=M3-MlQxbkEraWRnajExQXJUeDlXRDh0ZU14Qm1qZFlzMEIraGpQU2gzUUkwST0", "desc": "Zenei válogatás a Budapest Bár együttessel és vendégekkel.", "first_seen": "2026-11-22", "type": "műsor"}, {"title": "Kulcskeresők", "url": "https://nemzetiarchivum.hu/m3/open?id=M3-L1JncXJDbUFJQ09kdU1HVTk2eFFCRG9Na21VNDRrSjNMVHE1R1o5emttcz0", "desc": "Elveszik egy új lakás kulcsa, és a lakók – köztük a férj – bent ragadnak.", "first_seen": "2026-11-22", "type": "műsor"}, {"title": "Rendezte Esztergályos Károly", "url": "https://nemzetiarchivum.hu/m3/open?series=UmVuZGV6dGU=", "desc": "1976-os beszélgetés: Vitray Tamás és Esztergályos Károly a tévés rendezésről.", "first_seen": "2026-11-22", "type": "sorozat"}, {"title": "Így, ahogy vagytok – III. rész", "url": "https://nemzetiarchivum.hu/m3/open?series=w41neSwgYWhvZ3kgdmFneXRvaw==", "desc": "Egy kelet-magyarországi kisváros polgármestere egy reptéri pályázat körüli nyomással küzd.", "first_seen": "2026-11-22", "type": "sorozat"}, {"title": "Família Kft. – 196. Zsuzsanna", "url": "https://nemzetiarchivum.hu/m3/open?series=RmFtw61saWEgS2Z0Lg==", "desc": "A Szép család férfitagjai viszik a háztartást, amíg a nők kirándulnak.", "first_seen": "2026-11-22", "type": "sorozat"}, {"title": "Família Kft. – 195. Az első születésnap", "url": "https://nemzetiarchivum.hu/m3/open?series=RmFtw61saWEgS2Z0Lg==", "desc": "A család a legkisebb, Benji első születésnapját ünnepli.", "first_seen": "2026-11-22", "type": "sorozat"}, {"title": "Élő népzene – XXIX. Országos Táncháztalálkozó, 1. rész", "url": "https://nemzetiarchivum.hu/m3/open?series=w4lsxZEgbsOpcHplbmU=", "desc": "Válogatás a 2010-es táncháztalálkozó népzenéjéből és táncaiból.", "first_seen": "2026-11-22", "type": "sorozat"}, {"title": "Magyar örökség – Márton Áron", "url": "https://nemzetiarchivum.hu/m3/open?series=TWFneWFyIMO2csO2a3PDqWc=", "desc": "Portré Márton Áron erdélyi püspökről.", "first_seen": "2026-11-22", "type": "sorozat"}]};
+const SNAPSHOT = {"updated": "2026-11-22", "items": [{"title": "A hét műtárgya Hazatérő vadászok", "url": "https://nemzetiarchivum.hu/m3/open?series=QSBow6l0IG3FsXTDoXJneWE=", "desc": "Egy XVII. századi kínai képtekercs elemzését hallhatjuk, láthatjuk a műsorban. A zsákmánnyal hazatérő mongol vadászokat ábrázoló, 32 centiméter magas és 2,5 méter hosszú…", "first_seen": "2026-11-22", "type": "sorozat"}, {"title": "Pestbeszéd Garaczi László", "url": "https://nemzetiarchivum.hu/m3/open?series=UGVzdGJlc3rDqWQ=", "desc": "A Pestbeszéd a város és a benne élő ember különleges viszonyáról szól. Ismert és megismerendő művészek vallanak első szerelmekről, barátságokról, városi kalandokról, és mindarról,…", "first_seen": "2026-11-22", "type": "sorozat"}, {"title": "Budapest Bár", "url": "https://nemzetiarchivum.hu/m3/open?id=M3-NVZscXJLekYvQndVQnpzOXB0d1NZR01Yb0FJcXBMZU9ZSjdLNUc2U0ptbz0", "desc": "Műsorunkban válogatást mutatunk be a Budapest Bár zenekar közreműködésével, kitűnő vendégművészek társaságában.", "first_seen": "2026-11-22", "type": "műsor"}, {"title": "Kulcskeresők", "url": "https://nemzetiarchivum.hu/m3/open?id=M3-VGVFUlM0b0N6SHN1MlVRL0g4dHV5WUFYdmJ5aHRZSENsL1JoTFNxdWwwaz0", "desc": "Fóris pilóta a prágai gépet vezeti. Közben felesége beköltözik új lakásukba, azzal az elhatározással, hogy elválik a férjétől, s addigi életét nem vállalja. Nem találja azonban a…", "first_seen": "2026-11-22", "type": "műsor"}, {"title": "Így, ahogy vagytok III. rész", "url": "https://nemzetiarchivum.hu/m3/open?series=w41neSwgYWhvZ3kgdmFneXRvaw==", "desc": "Vidéki város, valahol Magyarország keleti végében. A polgármester, a katonai repülés többszörös világbajnoka az égből a földre pottyant. Mulatozós társai, a város kiskirályai…", "first_seen": "2026-11-22", "type": "sorozat"}, {"title": "Família Kft. 196. Zsuzsanna", "url": "https://nemzetiarchivum.hu/m3/open?series=RmFtw61saWEgS2Z0Lg==", "desc": "Szépéknél a férfiak magukhoz ragadják a hatalmat. Ám a hatalom kötelezettséggel is jár, ezért aztán a férfinép teendői is megszaporodnak. Amíg a nők emancipációs szabadságukat…", "first_seen": "2026-11-22", "type": "sorozat"}, {"title": "Família Kft. 195. Az első születésnap", "url": "https://nemzetiarchivum.hu/m3/open?series=RmFtw61saWEgS2Z0Lg==", "desc": "A kis Benji egyéves, a család a születésnapját ünnepli. Szépné izgatottan készül a nagy eseményre. Az ünnepi előkészület annyira lefoglalja, hogy nem veszi észre az ikrek közötti…", "first_seen": "2026-11-22", "type": "sorozat"}, {"title": "Magyar örökség Márton Áron", "url": "https://nemzetiarchivum.hu/m3/open?series=TWFneWFyIMO2csO2a3PDqWc=", "desc": "Tempfli József nagyváradi megyés püspök úgy jellemezte Márton Áront, mint akinek fő erényei voltak a jóság, a megértés és a mindenki felé való hajlás. Márton Áron katolikus pap,…", "first_seen": "2026-11-22", "type": "sorozat"}, {"title": "Élő népzene XXIX. Országos Táncháztalálkozó - 1. rész", "url": "https://nemzetiarchivum.hu/m3/open?series=w4lsxZEgbsOpcHplbmU=", "desc": "A táncháztalálkozók során az ország és a világ különböző részeiről érkező zene- és táncszeretettel mélyen átitatott közönség gyűlik össze, valamint természetesen táncosok,…", "first_seen": "2026-11-22", "type": "sorozat"}, {"title": "Rendezte Esztergályos Károly", "url": "https://nemzetiarchivum.hu/m3/open?series=UmVuZGV6dGU=", "desc": "1976-os beszélgetés: Vitray Tamás és Esztergályos Károly a tévés rendezésről.", "first_seen": "2026-11-22", "type": "sorozat"}]};
 const ART = [["#8A6A10","#17130A"],["#0E6E6E","#0A1414"],["#1F6B32","#0B160E"],["#7A1F5E","#170A12"],["#9A2A1F","#170B09"],["#1F3F9A","#0A0E1C"],["#5B5B66","#111114"],["#4C1D95","#100A1C"]];
 
 const $ = s => document.querySelector(s);
@@ -275,32 +292,12 @@ let feed = SNAPSHOT || {updated:"",items:[]};
 document.querySelectorAll("[data-ver]").forEach(e=>e.textContent=VERSION);
 $("#ver").textContent = VERSION;
 
-/* --- beágyazások --- */
-function embedInto(box, src, title){
-  if (box.dataset.done) return;
-  box.dataset.done = "1";
-  if (CAN_EMBED) {
-    const f = document.createElement("iframe");
-    f.src = src; f.title = title; f.allow = "autoplay; fullscreen; encrypted-media; picture-in-picture";
-    f.setAttribute("allowfullscreen",""); f.referrerPolicy = "origin";
-    box.prepend(f);
-  } else {
-    const d = document.createElement("div"); d.className = "ph";
-    d.innerHTML = `<p>${esc(title)}: a beágyazott lejátszás a telepített appban működik. Itt az előnézetben az M3 oldalán nyílik meg.</p>
-      <a class="btn" href="https://nemzetiarchivum.hu/m3" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>Megnyitás</a>`;
-    box.prepend(d);
-  }
-}
-function stopEmbed(box){ const f = box.querySelector("iframe"); if (f) { f.remove(); delete box.dataset.done; } }
-
 /* --- nézetek --- */
 const VIEWS = ["most","guide","explore","search","list"];
 function show(v){
   if (!VIEWS.includes(v)) v = "most";
   VIEWS.forEach(n => $("#v-"+n).classList.toggle("on", n===v));
   document.querySelectorAll("nav.tabs button").forEach(b => b.classList.toggle("on", b.dataset.go===v));
-  if (v==="most") embedInto($("#liveScreen"), LIVE_EMBED, "M3 élő adás"); else stopEmbed($("#liveScreen"));
-  if (v==="guide") embedInto($("#guideBox"), GUIDE_EMBED, "M3 műsorújság");
   if (v==="list") renderList();
   if (v==="explore") renderExplore();
   if (v==="search") setTimeout(()=>$("#q").focus(), 50);
@@ -443,7 +440,7 @@ fetch("feed.json",{cache:"no-store"}).then(r=>r.ok?r.json():Promise.reject()).th
   if (d && Array.isArray(d.items)) { feed=d; renderMost(); if ($("#v-explore").classList.contains("on")) renderExplore(); doSearch(); }
 }).catch(()=>{});
 show(location.hash.slice(1) || "most");
-if ("serviceWorker" in navigator && CAN_EMBED && location.protocol==="https:") navigator.serviceWorker.register("sw.js").catch(()=>{});
+if ("serviceWorker" in navigator && location.protocol==="https:" && /github\.io$/.test(location.hostname)) navigator.serviceWorker.register("sw.js").catch(()=>{});
 }
 </script>
 </body>

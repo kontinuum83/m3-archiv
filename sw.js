@@ -1,4 +1,4 @@
-const CACHE = "kepcso-v0.1";
+const CACHE = "kepcso-v0.2";
 const FILES = ["./", "./index.html", "./manifest.json", "./feed.json", "./icon-180.png", "./icon-512.png"];
 self.addEventListener("install", e => { self.skipWaiting(); e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES))); });
 self.addEventListener("activate", e => e.waitUntil(
