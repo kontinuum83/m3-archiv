@@ -1,6 +1,76 @@
 {
- "updated": "2026-11-22",
+ "updated": "2026-11-23",
  "items": [
+  {
+   "title": "Zene, táj, város Az ország közepén - Cegléd és környéke",
+   "url": "https://nemzetiarchivum.hu/m3/open?series=WmVuZSwgdMOhaiwgdsOhcm9z",
+   "desc": "Műsorunk Jászberény, Nyíregyháza, Cegléd, Pusztavacs és Csemő gazdag irodalmi, zenei és képzőművészeti értékeit, valamint inspiráló kulturális örökségét tárja a nézők elé.",
+   "first_seen": "2026-11-23",
+   "type": "sorozat"
+  },
+  {
+   "title": "Pestbeszéd Balla Eszter",
+   "url": "https://nemzetiarchivum.hu/m3/open?series=UGVzdGJlc3rDqWQ=",
+   "desc": "Balla Eszter Budapestje: a metró világa, a hidak, Csepel, Vas utca, Déli pályaudvar, az esti szórakozóhelyek Pesten, a Tabán és a Naphegy, a Szabó Ervin Könyvtár és környéke, az…",
+   "first_seen": "2026-11-23",
+   "type": "sorozat"
+  },
+  {
+   "title": "Magyar évszázadok A zsidótörvények",
+   "url": "https://nemzetiarchivum.hu/m3/open?series=TWFneWFyIMOpdnN6w6F6YWRvaw==",
+   "desc": "A magyar évszázadok nemzetünk történelmét mutatja be a legfontosabb jogi mozzanatokon és törvényeken keresztül. A mai adásban a zsidótörvényekkel fémjelzett törvénysorozatról esik…",
+   "first_seen": "2026-11-23",
+   "type": "sorozat"
+  },
+  {
+   "title": "Mókatár Alfonzó biliárdozik",
+   "url": "https://nemzetiarchivum.hu/m3/open?series=TcOza2F0w6Fy",
+   "desc": "Alfonzó ebben a humoros jelenetben bemutatja a biliárdozó emberek típusait.",
+   "first_seen": "2026-11-23",
+   "type": "sorozat"
+  },
+  {
+   "title": "Ping pong suli 5. rész",
+   "url": "https://nemzetiarchivum.hu/m3/open?series=UGluZyBwb25nIHN1bGk=",
+   "desc": "A Ping pong suli ötödik részében a pörgetés technikájával ismerkedhetünk meg.",
+   "first_seen": "2026-11-23",
+   "type": "sorozat"
+  },
+  {
+   "title": "Tündérlaki lányok",
+   "url": "https://nemzetiarchivum.hu/m3/open?id=M3-Vkc1RE1kUG16WWllV2tvdCtYS1FCN0NKNmdEYjVGR0ZOQmFvYjdnK3VzST0",
+   "desc": "Boriska, a legidősebb Tündérlaki lány, színésznő. Egy gazdag báró barátnőjeként bőkezűen gondoskodik a mamáról és három húgáról, így az egész család erkölcsös, polgárhoz méltó…",
+   "first_seen": "2026-11-23",
+   "type": "műsor"
+  },
+  {
+   "title": "Liszt Ferenc A világcsavargó",
+   "url": "https://nemzetiarchivum.hu/m3/open?series=TGlzenQgRmVyZW5j",
+   "desc": "Liszt Európa csaknem minden országában, majd minden jelentős városban ünnepelt virtuóz. Még visszatér időről időre családjához, de a végleges szakítás elkerülhetetlen.…",
+   "first_seen": "2026-11-23",
+   "type": "sorozat"
+  },
+  {
+   "title": "Família Kft. 198. A szőke nő",
+   "url": "https://nemzetiarchivum.hu/m3/open?series=RmFtw61saWEgS2Z0Lg==",
+   "desc": "Mónika el van keseredve. Sírva panaszolja el Áginak, hogy Csibi már napok óta nem jelentkezik, és nem tudja, mi történt vele. Miközben Szépné lelki tanácsadást tart, a titokzatos,…",
+   "first_seen": "2026-11-23",
+   "type": "sorozat"
+  },
+  {
+   "title": "Família Kft. 197. Főzni, vagy nem főzni?",
+   "url": "https://nemzetiarchivum.hu/m3/open?series=RmFtw61saWEgS2Z0Lg==",
+   "desc": "Az augusztusi, rekkenő hőségben, aki csak teheti, a szobában hűsöl. Ebben leginkább a férfiak járnak élen, akik hatalmas kártyacsatát vívnak a hűvös szalonban, miközben a nők…",
+   "first_seen": "2026-11-23",
+   "type": "sorozat"
+  },
+  {
+   "title": "Magyar örökség Hites Kristóf",
+   "url": "https://nemzetiarchivum.hu/m3/open?series=TWFneWFyIMO2csO2a3PDqWc=",
+   "desc": "Hites Kristóf atyát 1998-ban Magyar Örökség díjjal tüntették ki. Világi bencés papi pályán indult, Nagyszombatról Pannonhalmára került, onnan pedig Komáromba. A háborút követően…",
+   "first_seen": "2026-11-23",
+   "type": "sorozat"
+  },
   {
    "title": "A hét műtárgya Hazatérő vadászok",
    "url": "https://nemzetiarchivum.hu/m3/open?series=QSBow6l0IG3FsXTDoXJneWE=",
