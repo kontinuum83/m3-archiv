@@ -1,6 +1,76 @@
 {
- "updated": "2026-11-24",
+ "updated": "2026-11-25",
  "items": [
+  {
+   "title": "A zebegényi mester - Szőnyi István",
+   "url": "https://nemzetiarchivum.hu/m3/open?id=M3-d1ZkSlR0L2RQRGs5YnNvYWJEOUE4dDBvUXhWM29FY2VXOTlFSGRJckdUbz0",
+   "desc": "Szőnyi István festőművész életének, személyiségének, munkásságának megidézése családtagjai, barátai és tanítványai segítségével.",
+   "first_seen": "2026-11-25",
+   "type": "műsor"
+  },
+  {
+   "title": "Magyarország 2000 Esztergomi Keresztény Múzeum",
+   "url": "https://nemzetiarchivum.hu/m3/open?series=TWFneWFyb3JzesOhZyAyMDAw",
+   "desc": "Az esztergomi Keresztény Múzeum osztrák, német és németalföldi gyűjteménye négy évszázad festészetével ismertet meg.",
+   "first_seen": "2026-11-25",
+   "type": "sorozat"
+  },
+  {
+   "title": "Nóta Leszállt a csendes éj...",
+   "url": "https://nemzetiarchivum.hu/m3/open?series=TsOzdGE=",
+   "desc": "A Magyar Televízió 2008-ban készített műsorában Győri Szabó József énekel, Szalai Antal és zenekara muzsikál.",
+   "first_seen": "2026-11-25",
+   "type": "sorozat"
+  },
+  {
+   "title": "Don Juan",
+   "url": "https://nemzetiarchivum.hu/m3/open?id=M3-UENvSWxWTmc3a3pKcE10Uk9jK2h4Umx4cFFCcmVnaUh6OWJjVEM5bFBYbz0",
+   "desc": "Székely Gábor legendás, Új színházi Don Juan-rendezésének televíziós változata. A szereposztás zseniális, a karakterek pedig követik a kor (a rendszerváltás után 5 évvel)…",
+   "first_seen": "2026-11-25",
+   "type": "műsor"
+  },
+  {
+   "title": "Lyukasóra 211. rész Mészöly Dezső műsora",
+   "url": "https://nemzetiarchivum.hu/m3/open?series=THl1a2Fzw7NyYQ==",
+   "desc": "A Duna Televízió stúdiójában jönnek össze a Lyukasóra irodalomrajongó barátai, hogy játsszanak, és megörvendeztessék egymást választott kedvenc idézeteikkel. A játszótársak: Lator…",
+   "first_seen": "2026-11-25",
+   "type": "sorozat"
+  },
+  {
+   "title": "Família Kft. 202. Pici és a nagymama",
+   "url": "https://nemzetiarchivum.hu/m3/open?series=RmFtw61saWEgS2Z0Lg==",
+   "desc": "Szépné összetalálkozik az utcán Horváth Rozival. Megkéri, hogy jöjjön el hozzájuk, és mesélje el, hogyan készíti a pezsgős káposztát. Pici mostanában nagyon szórakozott, Ricsi…",
+   "first_seen": "2026-11-25",
+   "type": "sorozat"
+  },
+  {
+   "title": "Família Kft. 201. London",
+   "url": "https://nemzetiarchivum.hu/m3/open?series=RmFtw61saWEgS2Z0Lg==",
+   "desc": "Kövér Lajos nosztalgiázik. Napok óta mást sem csinál, csak a rádiót hallgatja, és régi, elsárgult leveleket olvas titokban a konyhában. Hajnalkát maró féltékenység gyötri.…",
+   "first_seen": "2026-11-25",
+   "type": "sorozat"
+  },
+  {
+   "title": "Magyar örökség Botka Valéria és Csányi László",
+   "url": "https://nemzetiarchivum.hu/m3/open?series=TWFneWFyIMO2csO2a3PDqWc=",
+   "desc": "Botka Valéria és Csányi László neve elválaszthatatlanul összeforrt a Magyar Rádió Gyermekkórusával. A Magyar Rádióban szerkesztőként dolgoztak, innen jött az ötlet 1954-ben, hogy…",
+   "first_seen": "2026-11-25",
+   "type": "sorozat"
+  },
+  {
+   "title": "Az én mozim 3. rész Fényes Szabolcs műsora",
+   "url": "https://nemzetiarchivum.hu/m3/open?series=QXogw6luIG1vemlt",
+   "desc": "Az én mozim egyszerre nosztalgikus múltidézés és tisztelgés olyan méltán híressé vált magyar, zenés játékfilmek előtt, mint a Nem ér a nevem, a Szerelmes biciklisták vagy a Fuss,…",
+   "first_seen": "2026-11-25",
+   "type": "sorozat"
+  },
+  {
+   "title": "Emberek a természetben Kalapot levéve...",
+   "url": "https://nemzetiarchivum.hu/m3/open?series=RW1iZXJlayBhIHRlcm3DqXN6ZXRiZW4=",
+   "desc": "A soproni erdők az ország legszebb területei közé tartoznak. Nem véletlen, hogy itt jó nevű erdészcsaládok, erdészgenerációk dolgoztak és dolgoznak ma is. Ezek közül az egyik…",
+   "first_seen": "2026-11-25",
+   "type": "sorozat"
+  },
   {
    "title": "Balázs Elemér 40. születésnapi koncertje Szakcsi Lakatos Béla, Oláh Kálmán",
    "url": "https://nemzetiarchivum.hu/m3/open?series=QmFsw6F6cyBFbGVtw6lyIDQwLiBzesO8bGV0w6lzbmFwaSBrb25jZXJ0amU=",
