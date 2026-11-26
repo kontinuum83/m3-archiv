@@ -1,6 +1,76 @@
 {
- "updated": "2026-11-25",
+ "updated": "2026-11-26",
  "items": [
+  {
+   "title": "Tűzvonalban A pók hálójában",
+   "url": "https://nemzetiarchivum.hu/m3/open?series=VMWxenZvbmFsYmFu",
+   "desc": "Kolonics tudtával Bordás találkozik Demsa lányával, aki hajlandó tanúskodni az apja ellen. Savigni emberei megjelennek Budapesten, hogy felkutassák a Demsa által megszerzett…",
+   "first_seen": "2026-11-26",
+   "type": "sorozat"
+  },
+  {
+   "title": "Forró mezők",
+   "url": "https://nemzetiarchivum.hu/m3/open?id=M3-NjFmUHAwa0YzY3FRSm5wcWlKMzFmNUo3SDlYYWQybmlJUCtSZVVvSlB0az0",
+   "desc": "A Móricz Zsigmond regénye alapján készült tévéfilm egy különös gyilkossági ügy köré a harmincas évek magyar kisvárosának jellegzetes figuráit rajzolja.",
+   "first_seen": "2026-11-26",
+   "type": "műsor"
+  },
+  {
+   "title": "Falujáró kamera Támasz nélkül?",
+   "url": "https://nemzetiarchivum.hu/m3/open?series=RmFsdWrDoXLDsyBrYW1lcmE=",
+   "desc": "Hogyan, miként élnek a megváltozott faluban az öregek? Kik gondoskodnak róluk és milyen kezdeményezés született érdekükben Baranya megyében, a gerdei szövetkezetben?",
+   "first_seen": "2026-11-26",
+   "type": "sorozat"
+  },
+  {
+   "title": "Magyar novellák Az élet",
+   "url": "https://nemzetiarchivum.hu/m3/open?series=TWFneWFyIG5vdmVsbMOhaw==",
+   "desc": "Rád és feslett erkölcsű barátnője, Lona behálóznak egy hiszékeny ifjút, hogy pénzhez jussanak. Az indítékuk azonban merőben különböző. A tévéfilm Bíró Lajos elbeszélése nyomán…",
+   "first_seen": "2026-11-26",
+   "type": "sorozat"
+  },
+  {
+   "title": "Feltámadás és Remény - Pilinszky János emlékezete",
+   "url": "https://nemzetiarchivum.hu/m3/open?id=M3-cUdLdlorUVVBclYvaEJOcjhyQmVKbHYrTnZVVVRJL3NMRHA3eENsTUtPcz0",
+   "desc": "Krisztus nemcsak a keresztényekért halt meg, hanem minden emberért, s feltámadása az egész világnak nyit új távlatokat. Pilinszky János, a költő intuíciójával és a hívő…",
+   "first_seen": "2026-11-26",
+   "type": "műsor"
+  },
+  {
+   "title": "Linda - új sorozat Az ördöggolyó",
+   "url": "https://nemzetiarchivum.hu/m3/open?series=TGluZGEgLSDDumogc29yb3phdA==",
+   "desc": "Most már Kováchnak is gyanús az eredménytelenség. A misztikus üzenetek sokasodnak, végül Lindának leesik a tantusz. A gyilkosságok tragikus sorát csak ő állíthatja meg. De…",
+   "first_seen": "2026-11-26",
+   "type": "sorozat"
+  },
+  {
+   "title": "Família Kft. 204. A Gyógygödör angyala",
+   "url": "https://nemzetiarchivum.hu/m3/open?series=RmFtw61saWEgS2Z0Lg==",
+   "desc": "A Gyógygödör Angyalai Egylet képviselője százezer forintos összeggel jelenik meg a kávéházban. A lovisták „Legyen Egy Jó Napja!” nevű alapítványa minden évben sorsolással dönt…",
+   "first_seen": "2026-11-26",
+   "type": "sorozat"
+  },
+  {
+   "title": "Família Kft. 203. Játszd újra Károly!",
+   "url": "https://nemzetiarchivum.hu/m3/open?series=RmFtw61saWEgS2Z0Lg==",
+   "desc": "Szépék házassága romokban. Kövérék azt bizonygatják, hogy nekik is újra el kellene játszaniuk az esküvőjüket, a korábbi udvarlással, levelezéssel együtt, mert a családpszichológus…",
+   "first_seen": "2026-11-26",
+   "type": "sorozat"
+  },
+  {
+   "title": "Magyar örökség Kárpáti Rudolf",
+   "url": "https://nemzetiarchivum.hu/m3/open?series=TWFneWFyIMO2csO2a3PDqWc=",
+   "desc": "Kárpáti Rudolf hatszoros olimpiai bajnok kardvívó, versenybíró, sportvezető, a világ egyik legeredményesebb vívója. Szinte felsorolhatatlan hol és hány világbajnokságot nyert.…",
+   "first_seen": "2026-11-26",
+   "type": "sorozat"
+  },
+  {
+   "title": "Magyar retro 2010.01.28-i adás",
+   "url": "https://nemzetiarchivum.hu/m3/open?series=TWFneWFyIHJldHJv",
+   "desc": "Válogatás az utóbbi évtizedek legjobb magyar könnyűzenéiből.",
+   "first_seen": "2026-11-26",
+   "type": "sorozat"
+  },
   {
    "title": "A zebegényi mester - Szőnyi István",
    "url": "https://nemzetiarchivum.hu/m3/open?id=M3-TGk4T2RsNlRuaWZqc2tRaG9ydFhBRW10VGMwcDBka3NxNm9wTiswNWZBUT0",
