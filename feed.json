@@ -1,6 +1,76 @@
 {
- "updated": "2026-11-27",
+ "updated": "2026-11-28",
  "items": [
+  {
+   "title": "Budapesti Zenei Hetek Cherubini: Anakreon nyitány",
+   "url": "https://nemzetiarchivum.hu/m3/open?series=QnVkYXBlc3RpIFplbmVpIEhldGVr",
+   "desc": "Az 1965-ös Budapesti Zenei Hetek keretében hangzott el Cherubini Anakreon nyitánya, a Budapesti Filharmóniai Társaság Zenekarát Kórodi András vezényelte.",
+   "first_seen": "2026-11-28",
+   "type": "sorozat"
+  },
+  {
+   "title": "A fény szigete Mauritius - 2. rész",
+   "url": "https://nemzetiarchivum.hu/m3/open?series=QSBmw6lueSBzemlnZXRl",
+   "desc": "Maruritius, avagy a fény szigete. Közelkép egy távoli szigetről és kultúráról.",
+   "first_seen": "2026-11-28",
+   "type": "sorozat"
+  },
+  {
+   "title": "Zenés TV Színház A cremonai hegedűs",
+   "url": "https://nemzetiarchivum.hu/m3/open?series=WmVuw6lzIFRWIFN6w61uaMOheg==",
+   "desc": "Az itáliai Cremona városában az 1750-es évben kihirdetik, hogy aranylánccal jutalmazzák azt, aki a legjobb hegedűt készíti. Ferrari hangszerkészítő mester ezt megtoldja azzal,…",
+   "first_seen": "2026-11-28",
+   "type": "sorozat"
+  },
+  {
+   "title": "Dada",
+   "url": "https://nemzetiarchivum.hu/m3/open?id=M3-djZWT2s2RlZVWlFtNi8rVVRnNENaRnpFVk1lUDNKTHptV1FpbWtsZWNxOD0",
+   "desc": "A Bródy Sándor Dada című művéből készült tévéjáték a cselédsors kiszolgáltatottságát mutatja be. Bolygó-Kiss Erzsébetnek törvénytelen lánya szültetik gazdája fiától. Anyagi…",
+   "first_seen": "2026-11-28",
+   "type": "műsor"
+  },
+  {
+   "title": "Karácsonyi muzsika",
+   "url": "https://nemzetiarchivum.hu/m3/open?id=M3-T1VxL2ttams1RzR3NmdKTzAwcCt4aUVyclFUb3diZXV2MEZDeEl4WDZiVT0",
+   "desc": "Benkő Dániel zenés-verses karácsonyi műsora 1985-ből, amelyben akkori zenekarával és meghívott zenésztársaival teremtik meg a karácsonyi hangulatot. A dalok között Ruttkai Éva,…",
+   "first_seen": "2026-11-28",
+   "type": "műsor"
+  },
+  {
+   "title": "Szeszélyes évszakok 1983. 13.",
+   "url": "https://nemzetiarchivum.hu/m3/open?series=U3plc3rDqWx5ZXMgw6l2c3pha29rIDE5ODMu",
+   "desc": "1981. március 7-én indult a Magyar Televízió és a magyar kabarétörténelem egyik legjelentősebb sorozata, a Szeszélyes évszakok. A szórakoztató műsorfolyam hamar elnyerte a nézők…",
+   "first_seen": "2026-11-28",
+   "type": "sorozat"
+  },
+  {
+   "title": "Százszorszép",
+   "url": "https://nemzetiarchivum.hu/m3/open?id=M3-dkEzZHU1bGpYWno2R3FNRFRMYXRPOEJER1NlemZWeWl1OXQybnN1bmM1VT0",
+   "desc": "Százszorszép királykisasszony apjának egyik szeme sír, a másik nevet. Nevet az egyik, mert szép leánya van, de sír a másik, mert a királykisasszony kényes, válogatós és szerfelett…",
+   "first_seen": "2026-11-28",
+   "type": "műsor"
+  },
+  {
+   "title": "Csináljuk a fesztivált! 16/13.",
+   "url": "https://nemzetiarchivum.hu/m3/open?series=Q3NpbsOhbGp1ayBhIGZlc3p0aXbDoWx0IQ==",
+   "desc": "A nagysikerű zenei műsor második évada. Korda György és Harsányi Levente műsorvezetőkhöz immár Balázs Klári is csatlakozik mint a műsor háziasszonya. Újabb dalok versenyeznek, a…",
+   "first_seen": "2026-11-28",
+   "type": "sorozat"
+  },
+  {
+   "title": "...és még egymillió lépés Tolnai dombokon",
+   "url": "https://nemzetiarchivum.hu/m3/open?series=Li4uw6lzIG3DqWcgZWd5bWlsbGnDsyBsw6lww6lz",
+   "desc": "A mai adásban átkelünk a Mecseket a Tolnai-dombságtól elválasztó völgyön, és egy új táj, új világ tárul elénk. A szegénység és a pusztulás azért folyamatos, a svábság is…",
+   "first_seen": "2026-11-28",
+   "type": "sorozat"
+  },
+  {
+   "title": "Főtér Gyöngyös",
+   "url": "https://nemzetiarchivum.hu/m3/open?series=RsWRdMOpcg==",
+   "desc": "Fedezzük fel együtt Magyarországot! A mai adásban Gyöngyös és környéke lát vendégül bennünket, és megtanulhatunk pikáns, fűszeres kacsasültet, más néven hegyalja pecsenyét,…",
+   "first_seen": "2026-11-28",
+   "type": "sorozat"
+  },
   {
    "title": "Egymillió fontos hangjegy Hungária együttes",
    "url": "https://nemzetiarchivum.hu/m3/open?series=RWd5bWlsbGnDsyBmb250b3MgaGFuZ2plZ3k=",
